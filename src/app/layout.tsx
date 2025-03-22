@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   creator: "Christian Koscielniak Pinto",
   keywords: ["AlwaysConvert", "convertitore", "image converter", "video converter", "audio converter", "unlimiterd inmage converter", "unlimited video converter", "file", "pdf", "doc", "jpg", "png", "gif", "mp4", "mp3", "wav", "ogg", "flac", "webm", "avi", "mov", "mkv", "zip", "rar", "7z", "tar", "tar.gz", "tar.bz2", "tar.xz", "tar.zst", "tar.lz", "tar.lz4", "tar.lz5", "tar.lzma", "tar.lzo", "tar.lzop", "tar.lzst", "tar.lzx", "tar.sz", "tar.z", "tar.zstd", "tar.zstd", "tar.zst"],
   verification: {
-    google: "j3seGInlB5h3abNnyjtpf63PtlNdNouXFeXpVgPnMcg",
+    google: "eMkFTfK1Rv4dcNHfv_zydohBTjnljShi7WpoCkcl4g4",
   },
 };
 
