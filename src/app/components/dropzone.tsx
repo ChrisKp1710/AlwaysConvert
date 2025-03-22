@@ -106,21 +106,26 @@ export default function Dropzone() {
     setIsConverting(false);
   };
   const downloadAll = (): void => {
-    for (let action of actions) {
-      !action.is_error && download(action);
+    for (const action of actions) {
+      if (!action.is_error) {
+        download(action);
+      }
     }
   };
   const download = (action: Action) => {
     const a = document.createElement("a");
     a.style.display = "none";
-    a.href = action.url;
-    a.download = action.output;
-
+    a.href = action.url as string;
+  
+    a.download = action.output || "default_output_name"; // Fornisci un valore predefinito
+  
     document.body.appendChild(a);
     a.click();
-
+  
     // Clean up after download
-    URL.revokeObjectURL(action.url);
+    if (action.url) {
+      URL.revokeObjectURL(action.url);
+    }
     document.body.removeChild(a);
   };
   const convert = async (): Promise<any> => {
@@ -130,7 +135,7 @@ export default function Dropzone() {
     }));
     setActions(tmp_actions);
     setIsConverting(true);
-    for (let action of tmp_actions) {
+    for (const action of tmp_actions) {
       try {
         const { url, output } = await convertFile(ffmpegRef.current, action);
         tmp_actions = tmp_actions.map((elt) =>
@@ -162,12 +167,13 @@ export default function Dropzone() {
     setIsDone(true);
     setIsConverting(false);
   };
-  const handleUpload = (data: Array<any>): void => {
+  function handleUpload(data: File[]): void {
     handleExitHover();
     setFiles(data);
     const tmp: Action[] = [];
-    data.forEach((file: any) => {
+    data.forEach((file: File) => {
       const formData = new FormData();
+      formData.append('file', file); // Utilizza formData qui
       tmp.push({
         file_name: file.name,
         file_size: file.size,
@@ -181,10 +187,10 @@ export default function Dropzone() {
       });
     });
     setActions(tmp);
-  };
+  }
   const handleHover = (): void => setIsHover(true);
   const handleExitHover = (): void => setIsHover(false);
-  const updateAction = (file_name: String, to: String) => {
+  const updateAction = (file_name: string, to: string) => {
     setActions(
       actions.map((action): Action => {
         if (action.file_name === file_name) {
