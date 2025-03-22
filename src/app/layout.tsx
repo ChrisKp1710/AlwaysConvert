@@ -5,6 +5,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { Toaster } from "./components/ui/toaster";
 import { ThemeProvider } from "./components/theme-provider";
+import GA from "./components/GA";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,10 +36,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
-      {/* 
-        className="h-full" qui non è strettamente necessario, 
-        ma aiuta se vuoi che <html> occupi sempre il 100% in altezza.
-      */}
+      <GA GA_MEASUREMENT_ID="G-3GB5LRJ43M" />
+      <meta name="google-site-verification" content="j3seGInlB5h3abNnyjtpf63PtlNdNouXFeXpVgPnMcg" />
       <body
         className={`
           ${geistSans.variable} 
