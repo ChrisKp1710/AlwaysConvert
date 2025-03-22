@@ -1,6 +1,6 @@
 # Unlimited File Converter - Converti Senza Limiti!
 
-Benvenuto in Unlimited File Converter, l'app che ti permette di convertire file di qualsiasi dimensione e formato, senza restrizioni! Dimentica i limiti imposti da altri servizi: con noi, la tua produttività non conosce confini! ✨
+Benvenuto in AlwaysConvert Unlimited File Converter, l'app che ti permette di convertire file di qualsiasi dimensione e formato, senza restrizioni! Dimentica i limiti imposti da altri servizi: con noi, la tua produttività non conosce confini! ✨
 
 ## Perché Unlimited File Converter è il Tuo Nuovo Migliore Amico?
 
@@ -23,13 +23,13 @@ Benvenuto in Unlimited File Converter, l'app che ti permette di convertire file 
 ## Sbaragliamo la Concorrenza!
 
 
-| Caratteristica          | Unlimited File Converter | Competitor A | Competitor B  |
-| :---------------------- | :----------------------- | :----------- | :------------ |
-| Dimensione File         | Illimitata ♾️          | 50 MB        | 100 MB        |
-| Conversione Multipla    | Illimitata               | 1 File       | Fino a 5 File |
-| Formati Supportati      | Tutti                    | Limitati     | Limitati      |
-| Registrazione Richiesta | No                       | Sì          | Sì           |
-| Velocità Conversione   | Elevata ⚡               | Moderata     | Moderata      |
+| Caratteristica          | AlwaysConvert  | Competitor A | Competitor B  |
+| :---------------------- | :-------------- | :----------- | :------------ |
+| Dimensione File         | Illimitata ♾️ | 50 MB        | 100 MB        |
+| Conversione Multipla    | Illimitata      | 1 File       | Fino a 5 File |
+| Formati Supportati      | Tutti           | Limitati     | Limitati      |
+| Registrazione Richiesta | No              | Sì          | Sì           |
+| Velocità Conversione   | Elevata ⚡      | Moderata     | Moderata      |
 
 ## Repository del Progetto
 
