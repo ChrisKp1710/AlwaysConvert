@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AlwaysConvert",
   description: "sito ceh ti permette di convertire viari tipi di file in altri formati, come pdf, doc, jpg, ecc.",
+  icons: {
+    icon: "/img/favicon.ico",            // Favicon base
+    shortcut: "/img/favicon-16x16.png",  // (Opzionale) Favicon di dimensioni diverse
+    apple: "/img/apple-touch-icon.png",  // (Opzionale) Icona per i device Apple
+  },
   creator: "Christian Koscielniak Pinto",
   keywords: ["AlwaysConvert", "convertitore", "image converter", "video converter", "audio converter", "unlimiterd inmage converter", "unlimited video converter", "file", "pdf", "doc", "jpg", "png", "gif", "mp4", "mp3", "wav", "ogg", "flac", "webm", "avi", "mov", "mkv", "zip", "rar", "7z", "tar", "tar.gz", "tar.bz2", "tar.xz", "tar.zst", "tar.lz", "tar.lz4", "tar.lz5", "tar.lzma", "tar.lzo", "tar.lzop", "tar.lzst", "tar.lzx", "tar.sz", "tar.z", "tar.zstd", "tar.zstd", "tar.zst"]
 };
