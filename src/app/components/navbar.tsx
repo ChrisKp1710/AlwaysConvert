@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
             </div>
             <div className="items-center hidden gap-2 md:flex">
                 <ModeToggle />
-                <Link href="https://github.com/benlhachemi/modifio.git">
+                <Link href="https://github.com/ChrisKp1710/convert-app">
                     <Button
                         variant="default"
                         className="items-center hidden gap-2 bg-orange-600 rounded-full w-fit md:flex"
