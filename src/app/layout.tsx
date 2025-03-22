@@ -19,14 +19,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "AlwaysConvert",
-  description: "sito che ti permette di convertire vari tipi di file in altri formati, come pdf, doc, jpg, ecc.",
+  description: "sito ceh ti permette di convertire viari tipi di file in altri formati, come pdf, doc, jpg, ecc.",
   icons: {
-    icon: "/img/favicon.ico",            
+    icon: "/img/favicon.ico",           
     shortcut: "/img/favicon-16x16.png",
     apple: "/img/apple-touch-icon.png",
   },
   creator: "Christian Koscielniak Pinto",
-  keywords: [/* ... */],
+  keywords: ["AlwaysConvert", "convertitore", "image converter", "video converter", "audio converter", "unlimiterd inmage converter", "unlimited video converter", "file", "pdf", "doc", "jpg", "png", "gif", "mp4", "mp3", "wav", "ogg", "flac", "webm", "avi", "mov", "mkv", "zip", "rar", "7z", "tar", "tar.gz", "tar.bz2", "tar.xz", "tar.zst", "tar.lz", "tar.lz4", "tar.lz5", "tar.lzma", "tar.lzo", "tar.lzop", "tar.lzst", "tar.lzx", "tar.sz", "tar.z", "tar.zstd", "tar.zstd", "tar.zst"],
+  verification: {
+    google: "j3seGInlB5h3abNnyjtpf63PtlNdNouXFeXpVgPnMcg",
+  },
 };
 
 export default function RootLayout({
@@ -37,7 +40,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <GA GA_MEASUREMENT_ID="G-3GB5LRJ43M" />
-      <meta name="google-site-verification" content="j3seGInlB5h3abNnyjtpf63PtlNdNouXFeXpVgPnMcg" />
       <body
         className={`
           ${geistSans.variable} 
