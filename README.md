@@ -2,7 +2,7 @@
 
 Benvenuto in AlwaysConvert Unlimited File Converter, l'app che ti permette di convertire file di qualsiasi dimensione e formato, senza restrizioni! Dimentica i limiti imposti da altri servizi: con noi, la tua produttività non conosce confini! ✨
 
-## Perché Unlimited File Converter è il Tuo Nuovo Migliore Amico?
+## Perché AlwaysConvert Unlimited è il Tuo Nuovo Migliore Amico?
 
 * **Conversione Senza Freni! ♾️:**
   * Niente più "file troppo grandi" o "limiti di upload"! Converti video 4K, foto in alta risoluzione e documenti pesantissimi senza problemi.
