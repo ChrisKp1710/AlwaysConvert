@@ -2,7 +2,7 @@
 
 Benvenuto in AlwaysConvert Unlimited File Converter, l'app che ti permette di convertire file di qualsiasi dimensione e formato, senza restrizioni! Dimentica i limiti imposti da altri servizi: con noi, la tua produttività non conosce confini! ✨
 
-## Perché Unlimited File Converter è il Tuo Nuovo Migliore Amico?
+## Perché AlwaysConvert Unlimited è il Tuo Nuovo Migliore Amico?
 
 * **Conversione Senza Freni! ♾️:**
   * Niente più "file troppo grandi" o "limiti di upload"! Converti video 4K, foto in alta risoluzione e documenti pesantissimi senza problemi.
@@ -33,7 +33,7 @@ Benvenuto in AlwaysConvert Unlimited File Converter, l'app che ti permette di co
 
 ## Repository del Progetto
 
-Il codice sorgente del progetto è disponibile su GitHub: [https://github.com/ChrisKp1710/convert-app.git](https://github.com/ChrisKp1710/convert-app.git)
+Il codice sorgente del progetto è disponibile su GitHub: [https://github.com/ChrisKp1710/AlwaysConvert.git](https://github.com/ChrisKp1710/AlwaysConvert.git)
 
 ## Come Contribuire
 
@@ -41,7 +41,7 @@ Siamo felici di accogliere contributi dalla community! Se hai idee per nuove fun
 
 1. **Fork del Repository:**
 
-   * Vai alla pagina del repository [https://github.com/ChrisKp1710/convert-app.git](https://github.com/ChrisKp1710/convert-app.git)
+   * Vai alla pagina del repository [https://github.com/ChrisKp1710/AlwaysConvert.git](https://github.com/ChrisKp1710/AlwaysConvert.git)
    * Clicca sul pulsante "Fork" in alto a destra.
    * GitHub creerà una copia del repository nel tuo account.
 2. **Clona il Tuo Fork:**
@@ -49,7 +49,7 @@ Siamo felici di accogliere contributi dalla community! Se hai idee per nuove fun
    * Clona il repository forked sul tuo computer:
 
    ```bash
-   git clone [https://github.com/tuonomeutente/convert-app.git](https://www.google.com/search?q=https://github.com/tuonomeutente/convert-app.git)
+   git clone [https://github.com/tuonomeutente/AlwaysConvert.git](https://www.google.com/search?q=https://github.com/tuonomeutente/AlwaysConvert.git)
    ```
 3. **Crea un Branch:**
 
@@ -103,7 +103,7 @@ Siamo felici di accogliere contributi dalla community! Se hai idee per nuove fun
 
 ## Ringraziamenti
 
-Un ringraziamento speciale a tutti i contributori che ci aiutano a rendere Unlimited File Converter sempre migliore!
+Un ringraziamento speciale a tutti i contributori che ci aiutano a rendere AlwaysConvert Unlimited sempre migliore!
 
 ## Inizia a Convertire!
 
