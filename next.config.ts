@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ["kodechris.dev"],
+  },
 };
 
 export default nextConfig;

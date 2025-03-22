@@ -39,19 +39,24 @@ const Navbar: React.FC = () => {
             </div>
             <div className="items-center hidden gap-2 md:flex">
                 <ModeToggle />
-                <Link href="https://github.com/ChrisKp1710/convert-app">
+                <Link
+                    href="https://github.com/ChrisKp1710/AlwaysConvert"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <Button
-                        variant="default"
-                        className="items-center hidden gap-2 bg-orange-600 rounded-full w-fit md:flex"
-                        size="lg"
+                    variant="default"
+                    className="items-center hidden gap-2 bg-orange-600 rounded-full w-fit md:flex"
+                    size="lg"
                     >
-                        <span>Github Repo</span>
-                        <span className="text-xl">
-                            <BsGithub />
-                        </span>
+                    <span>Github Repo</span>
+                    <span className="text-xl">
+                        <BsGithub />
+                    </span>
                     </Button>
                 </Link>
             </div>
+
             {/* MOBILE NAV */}
             <Sheet>
                 <SheetTrigger className="block p-3 md:hidden">
