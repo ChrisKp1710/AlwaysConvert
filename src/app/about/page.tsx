@@ -2,7 +2,7 @@ export default function About() {
   return (
       <div className="space-y-12 text-md md:text-lg text-muted-foreground pb-4 md:pb-8">
           <p>
-              Introducing Modifio, the ultimate multimedia conversion powerhouse that empowers you to transform images,
+              Introducing AlwaysConvert, the ultimate multimedia conversion powerhouse that empowers you to transform images,
               audio files, and videos with unprecedented freedom, all at absolutely no cost! Say goodbye to limitations
               and hello to limitless creative possibilities.
           </p>
@@ -46,7 +46,7 @@ export default function About() {
           <div className="space-y-2">
               <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">🌐 Accessible Anywhere:</h2>
               <p>
-                  Access Modifio from any device with an internet connection. Whether you&apos;re on your computer, tablet,
+                  Access AlwaysConvert from any device with an internet connection. Whether you&apos;re on your computer, tablet,
                   or smartphone, you can use our platform with ease.
               </p>
           </div>
@@ -77,11 +77,11 @@ export default function About() {
 
           <div className="space-y-2">
               <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">
-                  🌟 It&apos;s Free, It&apos;s Powerful, It&apos;s Modifio:
+                  🌟 It&apos;s Free, It&apos;s Powerful, It&apos;s AlwaysConvert:
               </h2>
               <p>
                   Experience the freedom to convert images, audio, and video without boundaries. Elevate your multimedia
-                  projects with the unlimited potential of Modifio.
+                  projects with the unlimited potential of AlwaysConvert.
               </p>
           </div>
 

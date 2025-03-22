@@ -1,7 +1,17 @@
 export default function PrivacyPolicy() {
+
+    const today = new Date();
+    const formattedDate = today.toLocaleString("en-US", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+
+
     return (
         <div className="space-y-12 text-md md:text-lg text-muted-foreground pb-4 md:pb-8">
-            <p>Effective Date: Sat 22 Mar 2025</p>
+            <p>Effective Date: {formattedDate}</p>
             <p>
                 At AlwaysConvert, we are committed to safeguarding your privacy. This Privacy Policy outlines our practices
                 regarding the collection, use, and disclosure of personal information when you use our website and
@@ -89,7 +99,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <p>
-                By using Modifio, you agree to the practices outlined in this Privacy Policy. Please discontinue use of
+                By using AlwaysConvert, you agree to the practices outlined in this Privacy Policy. Please discontinue use of
                 our services if you do not agree with this policy. Thank you for trusting us with your privacy.
             </p>
         </div>
