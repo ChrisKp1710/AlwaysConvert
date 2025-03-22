@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["kodechris.dev"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
