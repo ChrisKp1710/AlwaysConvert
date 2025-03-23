@@ -1,107 +1,74 @@
 export default function PrivacyPolicy() {
-
-    const today = new Date();
-    const formattedDate = today.toLocaleString("en-US", {
-        weekday: "short",
-        day: "numeric",
-        month: "short",
-        year: "numeric",
+    const formattedDate = new Date().toLocaleDateString("en-US", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
-
-
+  
+    const sections = [
+      {
+        title: "Information We Collect",
+        content:
+          "We collect limited information through Google Analytics, including pages visited, IP addresses, browser types, device types, and referral URLs, to enhance functionality and content.",
+      },
+      {
+        title: "How We Use Your Information",
+        content:
+          "We use collected data solely to analyze user behavior and improve website performance. We do not sell, rent, or share this information with third parties.",
+      },
+      {
+        title: "Cookies and Tracking Technologies",
+        content:
+          "We use cookies and similar technologies to enhance your website experience. You can control cookie preferences via your browser settings, though disabling cookies might impact functionality.",
+      },
+      {
+        title: "Data Security",
+        content:
+          "We implement reasonable security measures to protect your data from unauthorized access. However, no data transmission or storage method is completely secure.",
+      },
+      {
+        title: "Third-Party Links",
+        content:
+          "Our website may contain links to external websites. We are not responsible for the privacy practices of third-party sites. We recommend reviewing their privacy policies.",
+      },
+      {
+        title: "Children's Privacy",
+        content:
+          "Our website is not designed for children under 13, and we do not knowingly collect their personal data. If you suspect we've collected data from a minor, please contact us immediately.",
+      },
+      {
+        title: "Changes to This Privacy Policy",
+        content:
+          "We may update this Privacy Policy without prior notice. Changes are effective immediately upon posting. Check regularly for updates.",
+      },
+      {
+        title: "Contact Us",
+        content:
+          "For questions regarding this Privacy Policy, please contact us at Chriskp1710@gmail.com.",
+      },
+    ];
+  
     return (
-        <div className="space-y-12 text-md md:text-lg text-muted-foreground pb-4 md:pb-8">
-            <p>Effective Date: {formattedDate}</p>
-            <p>
-                At AlwaysConvert, we are committed to safeguarding your privacy. This Privacy Policy outlines our practices
-                regarding the collection, use, and disclosure of personal information when you use our website and
-                services. Please read this policy carefully to understand how we handle your data.
-            </p>
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">1. Information We Collect</h2>
-                <p>
-                    We collect and use limited information to improve the user experience. The only data we collect is
-                    through Google Analytics, which includes: Usage Information: We may collect information about your
-                    interaction with our website, such as the pages you visit, your IP address, browser type, device
-                    type, and referral URLs. This information helps us understand how users interact with our website to
-                    enhance its functionality and content.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">
-                    2. How We Use Your Information
-                </h2>
-                <p>
-                    We use the information collected through Google Analytics solely for the purpose of understanding
-                    user behavior and improving our website&apos;s performance. We do not sell, rent, or share this
-                    information with third parties.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">
-                    3. Cookies and Tracking Technologies
-                </h2>
-                <p>
-                    We use cookies and similar tracking technologies to collect and store information about your
-                    interactions with our website. You can control cookie preferences through your browser settings.
-                    Please note that disabling cookies may affect your experience on our website.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">4. Data Security</h2>
-                <p>
-                    We take reasonable measures to protect your data against unauthorized access, disclosure,
-                    alteration, or destruction. However, please be aware that no method of data transmission over the
-                    internet or electronic storage is 100% secure.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">5. Third-Party Links</h2>
-                <p>
-                    Our website may contain links to third-party websites or services that are not operated by us. We
-                    have no control over the content, privacy policies, or practices of these third-party websites. We
-                    encourage you to review the privacy policies of these websites before providing any personal
-                    information.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">6. Children&apos;s Privacy</h2>
-                <p>
-                    Our website is not intended for children under the age of 13. We do not knowingly collect personal
-                    information from children. If you are a parent or guardian and believe that your child has provided
-                    us with personal information, please contact us, and we will take appropriate action to remove that
-                    information.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">
-                    7. Changes to This Privacy Policy
-                </h2>
-                <p>
-                    We reserve the right to update or modify this Privacy Policy at any time without prior notice. Any
-                    changes will be effective immediately upon posting on this page, and the date of the latest revision
-                    will be indicated at the top of the policy.
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">8. Contact Us</h2>
-                <p>
-                    If you have any questions or concerns about this Privacy Policy or the data we collect, please
-                    contact us at Chriskp1710@gmail.com.
-                </p>
-            </div>
-
-            <p>
-                By using AlwaysConvert, you agree to the practices outlined in this Privacy Policy. Please discontinue use of
-                our services if you do not agree with this policy. Thank you for trusting us with your privacy.
-            </p>
-        </div>
+      <div className="space-y-8 text-md md:text-lg text-muted-foreground pb-8">
+        <p className="text-sm">Effective Date: {formattedDate}</p>
+        <p>
+          AlwaysConvert is committed to protecting your privacy. This policy explains our data handling practices clearly and transparently.
+        </p>
+  
+        {sections.map((section, index) => (
+          <section key={index} className="space-y-2">
+            <h2 className="text-xl font-semibold text-black dark:text-white">
+              {index + 1}. {section.title}
+            </h2>
+            <p>{section.content}</p>
+          </section>
+        ))}
+  
+        <p className="border-t pt-4">
+          By using AlwaysConvert, you consent to this Privacy Policy. Please discontinue use if you disagree with these terms.
+        </p>
+      </div>
     );
-}
+  }
+  
