@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import { Toaster } from "./components/ui/toaster";
-import { ThemeProvider } from "./components/theme-provider";
-import GA from "./components/GA";
+import "../globals.css";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import { Toaster } from "../components/ui/toaster";
+import { ThemeProvider } from "../components/theme-provider";
+import GA from "../components/GA";
 import Script from "next/script";
+import {NextIntlClientProvider, hasLocale} from 'next-intl';
+import {notFound} from 'next/navigation';
+import {routing} from '@/i18n/routing';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,13 +36,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params
 }: {
   children: React.ReactNode;
+  params: Promise<{locale: string}>;
 }) {
+  // Ensure that the incoming `locale` is valid
+  const {locale} = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
   return (
-    <html lang="en" suppressHydrationWarning className="h-full">
+    <html lang={locale} suppressHydrationWarning className="h-full">
       <GA GA_MEASUREMENT_ID="G-3GB5LRJ43M" />
 
       {/* CookieYes Script */}
@@ -67,7 +77,9 @@ export default function RootLayout({
           
           {/* MAIN: flex-grow spinge il footer in basso quando i contenuti sono pochi */}
           <main className="container flex-grow mx-auto px-4 pt-32 lg:pt-36 2xl:pt-44 max-w-4xl lg:max-w-6xl 2xl:max-w-7xl">
+          <NextIntlClientProvider>
             {children}
+          </NextIntlClientProvider>
           </main>
 
           {/* FOOTER SEMPRE IN FONDO */}
