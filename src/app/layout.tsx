@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import { Toaster } from "./components/ui/toaster";
 import { ThemeProvider } from "./components/theme-provider";
 import GA from "./components/GA";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <GA GA_MEASUREMENT_ID="G-3GB5LRJ43M" />
+
+      {/* CookieYes Script */}
+      <Script
+        id="cookieyes"
+        src="https://cdn-cookieyes.com/client_data/0b5d208db4ac32d4ba9b503b/script.js"
+        strategy="afterInteractive"
+      />
+      
       <body
         className={`
           ${geistSans.variable} 
