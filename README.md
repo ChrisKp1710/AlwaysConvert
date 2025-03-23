@@ -106,6 +106,9 @@ Siamo felici di accogliere contributi dalla community! Se hai idee per nuove fun
 Un ringraziamento speciale a tutti i contributori che ci aiutano a rendere AlwaysConvert Unlimited sempre migliore!
 
 ## Inizia a Convertire!
+[![Netlify Status](https://api.netlify.com/api/v1/badges/<SITE_ID>/deploy-status)](https://alwaysconvert.netlify.app)
+
+
 
 Visita il nostro sito e scopri la libertà di convertire file senza limiti!
 
