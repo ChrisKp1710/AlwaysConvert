@@ -1,7 +1,87 @@
 {
-    "home": {
-      "title": "Convertitore di File Illimitato Gratuito",
-      "description": "Libera la tua creatività con AlwaysConvert – lo strumento online definitivo per convertire gratuitamente e senza limiti file multimediali. Trasforma immagini, audio e video con facilità e senza restrizioni. Inizia subito a convertire e porta i tuoi contenuti a un livello superiore!"
-    }
+  "home": {
+    "title": "Convertitore di File Illimitato Gratuito",
+    "description": "Libera la tua creatività con AlwaysConvert – lo strumento online definitivo per convertire gratuitamente e senza limiti file multimediali. Trasforma immagini, audio e video con facilità e senza restrizioni. Inizia subito a convertire e porta i tuoi contenuti a un livello superiore!"
+  },
+
+  "about": {
+    "cards": [
+      {
+        "title": "🖼️ Conversione Immagini",
+        "description": "Ridimensiona, ritaglia, ruota e converti immagini facilmente. Formati supportati: JPEG, PNG e altri."
+      },
+      {
+        "title": "🎵 Trasformazione Audio",
+        "description": "Converti formati audio (MP3, WAV, AAC), regola il bitrate, taglia e unisci file audio."
+      },
+      {
+        "title": "🎥 Metamorfosi Video",
+        "description": "Modifica, transcodifica, unisci clip o cambia formato per creare contenuti video straordinari per ogni piattaforma."
+      },
+      {
+        "title": "🚀 Illimitato e Gratuito",
+        "description": "Goditi conversioni illimitate senza costi nascosti o restrizioni, completamente gratis."
+      },
+      {
+        "title": "🌐 Accessibile Ovunque",
+        "description": "Converti facilmente dal tuo desktop, tablet o smartphone, ovunque tu sia."
+      },
+      {
+        "title": "🔒 Sicuro e Privato",
+        "description": "La tua privacy è importante. I file rimangono sicuri e confidenziali, sempre."
+      },
+      {
+        "title": "💡 Interfaccia Intuitiva",
+        "description": "Intuitiva per principianti, potente per esperti—non servono competenze tecniche."
+      },
+      {
+        "title": "📈 In Continua Evoluzione",
+        "description": "Aggiornamenti frequenti e nuove funzionalità per migliorare costantemente la tua esperienza multimediale."
+      },
+      {
+        "title": "🌟 Vantaggi AlwaysConvert",
+        "description": "Trasforma contenuti multimediali senza limiti. Potente, versatile e totalmente gratuito."
+      }
+    ]
+  },
+
+  "privacyPolicy": {
+    "effectiveDate": "Data di Efficacia: {date}",
+    "intro": "AlwaysConvert si impegna a proteggere la tua privacy. Questa politica spiega chiaramente e trasparentemente le nostre pratiche di gestione dei dati.",
+    "sections": [
+      {
+        "title": "Informazioni che Raccogliamo",
+        "content": "Raccogliamo informazioni limitate tramite Google Analytics, tra cui pagine visitate, indirizzi IP, tipi di browser, tipi di dispositivi e URL di riferimento, per migliorare la funzionalità e i contenuti."
+      },
+      {
+        "title": "Come Utilizziamo le Tue Informazioni",
+        "content": "Utilizziamo i dati raccolti esclusivamente per analizzare il comportamento degli utenti e migliorare le prestazioni del sito web. Non vendiamo, affittiamo o condividiamo queste informazioni con terzi."
+      },
+      {
+        "title": "Cookie e Tecnologie di Tracciamento",
+        "content": "Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sul sito. Puoi controllare le preferenze dei cookie tramite le impostazioni del tuo browser, anche se disabilitare i cookie potrebbe influire sulla funzionalità."
+      },
+      {
+        "title": "Sicurezza dei Dati",
+        "content": "Adottiamo misure di sicurezza ragionevoli per proteggere i tuoi dati da accessi non autorizzati. Tuttavia, nessun metodo di trasmissione o archiviazione dei dati è completamente sicuro."
+      },
+      {
+        "title": "Link a Siti di Terze Parti",
+        "content": "Il nostro sito potrebbe contenere link a siti esterni. Non siamo responsabili delle pratiche di privacy di tali siti. Ti consigliamo di esaminare le loro politiche sulla privacy."
+      },
+      {
+        "title": "Privacy dei Bambini",
+        "content": "Il nostro sito non è destinato ai bambini sotto i 13 anni e non raccogliamo consapevolmente i loro dati personali. Se sospetti che abbiamo raccolto dati da un minorenne, contattaci immediatamente."
+      },
+      {
+        "title": "Modifiche a Questa Politica sulla Privacy",
+        "content": "Possiamo aggiornare questa Politica sulla Privacy senza preavviso. Le modifiche sono efficaci immediatamente dopo la pubblicazione. Controlla regolarmente per eventuali aggiornamenti."
+      },
+      {
+        "title": "Contattaci",
+        "content": "Per domande riguardo questa Politica sulla Privacy, contattaci a Chriskp1710@gmail.com."
+      }
+    ],
+    "consent": "Utilizzando AlwaysConvert, acconsenti a questa Politica sulla Privacy. Interrompi l'uso del sito se non sei d'accordo con questi termini."
+  }
 }
-  
