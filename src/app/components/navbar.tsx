@@ -6,7 +6,9 @@ import { BsGithub } from "react-icons/bs";
 import {
   Sheet,
   SheetContent,
-  SheetTrigger
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
 } from "./ui/sheet";
 import { ModeToggle } from "./mode-toggle";
 import { LuMenu } from "react-icons/lu";
@@ -14,7 +16,7 @@ import { LuMenu } from "react-icons/lu";
 const Navbar: React.FC = () => {
   return (
     <nav className="fixed z-50 flex items-center justify-between w-full h-24 px-4 py-10 backdrop-blur-md bg-background bg-opacity-30 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-      {/* Logo */}
+      {/* Logo (Desktop + Mobile) */}
       <Link href="/" className="flex items-center space-x-2">
         <Image
           alt="AlwaysConvert"
@@ -75,8 +77,13 @@ const Navbar: React.FC = () => {
         </SheetTrigger>
 
         <SheetContent side="right">
+          {/* ✅ SheetHeader + SheetTitle obbligatorio per accessibilità */}
+          <SheetHeader>
+            <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
+          </SheetHeader>
+
           <div className="flex flex-col h-full justify-between p-4">
-            {/* 👤 HEADER CON LOGO + NOME */}
+            {/* 👤 Header con logo e nome sito */}
             <div className="flex items-center gap-3 mb-4">
               <Image
                 alt="AlwaysConvert"
@@ -90,7 +97,7 @@ const Navbar: React.FC = () => {
               </span>
             </div>
 
-            {/* 📋 MENU VOCI PRINCIPALI */}
+            {/* 📋 Voci del menu mobile */}
             <div className="flex flex-col gap-4 text-lg font-semibold">
               <SheetTrigger asChild>
                 <Link href="/">
@@ -115,14 +122,14 @@ const Navbar: React.FC = () => {
               </SheetTrigger>
             </div>
 
-            {/* 🌙 TOGGLE + GITHUB REPO */}
+            {/* 🌙 Tema + Github button */}
             <div className="mt-6 border-t pt-4 space-y-4">
-              {/* Tema toggle */}
+              {/* Toggle tema */}
               <div className="flex justify-center">
                 <ModeToggle />
               </div>
 
-              {/* Bottone Github */}
+              {/* Bottone GitHub */}
               <a
                 href="https://github.com/ChrisKp1710/AlwaysConvert"
                 target="_blank"
