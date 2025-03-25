@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'img.shields.io', // 👈 i badge SVG
-      },
+      }
     ],
     dangerouslyAllowSVG: true, // 👈 richiesto per i badge SVG remoti
   },
