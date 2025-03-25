@@ -30,8 +30,8 @@ function scanPages(dir: string, currentPath = ''): { route: string; filePath: st
   const pages: { route: string; filePath: string }[] = [];
 
   for (const entry of entries) {
-    const entryPath = path.join(dir, entry.name); // path assoluto
-    const urlPath = `${currentPath}/${entry.name}`; // path relativo per la sitemap
+    const entryPath = path.join(dir, entry.name);
+    const urlPath = `${currentPath}/${entry.name}`;
 
     if (entry.isDirectory()) {
       // Ricorsione: entra nella sottocartella
@@ -48,6 +48,28 @@ function scanPages(dir: string, currentPath = ''): { route: string; filePath: st
   return pages;
 }
 
+
+// ======================
+// FUNZIONI DI SUPPORTO SEO
+// ======================
+
+// Calcola la profondità del path per assegnare <priority> dinamico
+function getPriority(path: string): string {
+  const segments = path.split('/').filter(Boolean).length;
+  if (segments <= 1) return '1.0';
+  if (segments === 2) return '0.8';
+  return '0.6';
+}
+
+// Calcola <changefreq> in base alla tipologia di pagina
+function getChangeFreq(route: string): string {
+  if (route === '' || route === '/') return 'daily';
+  if (route.includes('privacy-policy')) return 'yearly';
+  if (route.includes('about')) return 'monthly';
+  return 'weekly';
+}
+
+
 // ======================
 // GENERAZIONE DELLA SITEMAP
 // ======================
@@ -55,49 +77,61 @@ function scanPages(dir: string, currentPath = ''): { route: string; filePath: st
 // Trova tutte le pagine dentro src/app/[locale]/...
 const baseRoutes = scanPages(appDir);
 
-// Costruisce i blocchi <url> per ogni lingua + pagina
-const urls = locales.flatMap((locale) =>
-  baseRoutes.map(({ route, filePath }) => {
-    // Costruisce il path completo localizzato
-    const fullPath = route === '' ? `/${locale}` : `/${locale}${route}`;
+// Costruisce i blocchi <url> per ogni lingua + pagina + hreflang
+const urls = baseRoutes.flatMap(({ route, filePath }) => {
+  // Data ultima modifica
+  const stats = fs.statSync(filePath);
+  const lastmod = stats.mtime.toISOString().split('T')[0];
 
-    // Ottiene la data dell'ultima modifica del file
-    const stats = fs.statSync(filePath);
-    const lastmod = stats.mtime.toISOString().split('T')[0]; // formato YYYY-MM-DD
+  // SEO dynamic data
+  const priority = getPriority(route);
+  const changefreq = getChangeFreq(route);
 
-    // Costruisce il blocco <url>
+  // Costruisce i tag hreflang per tutte le lingue
+  const alternates = locales.map(locale => {
+    const href = `${baseUrl}/${locale}${route}`;
+    return `<xhtml:link rel="alternate" hreflang="${locale}" href="${href}" />`;
+  }).join('\n        '); // indentato bene
+
+  // Un blocco <url> per ogni lingua
+  return locales.map(locale => {
+    const loc = `${baseUrl}/${locale}${route}`;
     return `
       <url>
-        <loc>${baseUrl}${fullPath}</loc>
+        <loc>${loc}</loc>
+        ${alternates}
         <lastmod>${lastmod}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>${route === '' ? '1.0' : '0.8'}</priority>
+        <changefreq>${changefreq}</changefreq>
+        <priority>${priority}</priority>
       </url>
     `;
-  })
-);
+  });
+});
+
 
 // ======================
 // SCRITTURA FILE sitemap.xml
 // ======================
 
-// XML finale (formattato e valido per Google)
+// XML finale con namespace hreflang incluso
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset 
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml">
   ${urls.join('\n')}
 </urlset>
 `.trim();
 
 // Scrive il file nella cartella public
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
-console.log(`✅ Sitemap generata dinamicamente (${urls.length} URL)`);
+console.log(`✅ Sitemap generata con ${urls.length} URL, completa di hreflang e dati SEO`);
 
 
 // ======================
 // GENERAZIONE DEL ROBOTS.TXT
 // ======================
 
-// Impostazioni standard SEO per i bot (Google, Bing, ecc.)
+// Impostazioni standard SEO per i bot
 const robots = `User-agent: *
 Allow: /
 
