@@ -77,27 +77,31 @@ const Navbar: React.FC = () => {
         </SheetTrigger>
 
         <SheetContent side="right">
-          {/* ✅ SheetHeader + SheetTitle obbligatorio per accessibilità */}
           <SheetHeader>
             <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
           </SheetHeader>
 
-          <div className="flex flex-col h-full justify-between p-4">
-            {/* 👤 Header con logo e nome sito */}
+          <div className="flex flex-col h-full justify-between py-4 px-3">
+            {/* 👤 Logo + Nome + Slogan */}
             <div className="flex items-center gap-3 mb-4">
               <Image
                 alt="AlwaysConvert"
                 src="/img/logo.png"
-                width={32}
-                height={32}
+                width={36}
+                height={36}
                 className="dark:invert"
               />
-              <span className="text-lg font-semibold tracking-tight">
-                AlwaysConvert
-              </span>
+              <div className="flex flex-col">
+                <span className="text-base font-semibold tracking-tight">
+                  AlwaysConvert
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  Converti con stile ✨
+                </span>
+              </div>
             </div>
 
-            {/* 📋 Voci del menu mobile */}
+            {/* 📋 Link navigazione mobile */}
             <div className="flex flex-col gap-4 text-lg font-semibold">
               <SheetTrigger asChild>
                 <Link href="/">
@@ -122,8 +126,11 @@ const Navbar: React.FC = () => {
               </SheetTrigger>
             </div>
 
-            {/* 🌙 Tema + Github button */}
-            <div className="mt-6 border-t pt-4 space-y-4">
+            {/* Divider visivo */}
+            <hr className="my-6 border-gray-200 dark:border-gray-700" />
+
+            {/* 🌙 Tema + GitHub */}
+            <div className="space-y-4">
               {/* Toggle tema */}
               <div className="flex justify-center">
                 <ModeToggle />
@@ -137,13 +144,18 @@ const Navbar: React.FC = () => {
               >
                 <Button
                   variant="default"
-                  className="w-full gap-2 bg-orange-600 rounded-full text-white hover:bg-orange-700 transition justify-between px-4 py-2"
+                  className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
                 >
                   <span>Github Repo</span>
                   <BsGithub className="text-xl" />
                 </Button>
               </a>
             </div>
+
+            {/* Footer info opzionale */}
+            <p className="text-xs text-muted-foreground text-center mt-6">
+              Made with ❤️ in Italy
+            </p>
           </div>
         </SheetContent>
       </Sheet>
