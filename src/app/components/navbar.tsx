@@ -138,7 +138,7 @@ const Navbar: React.FC = () => {
 
                 {/* 🌗 Tema toggle */}
                 <div className="flex justify-center">
-                    <ModeToggle /
+                    <ModeToggle />
                 </div>
 
                 {/* 🔗 GitHub */}
