@@ -128,16 +128,40 @@ console.log(`✅ Sitemap generata con ${urls.length} URL, completa di hreflang e
 
 
 // ======================
-// GENERAZIONE DEL ROBOTS.TXT
+// GENERAZIONE DEL ROBOTS.TXT (ottimizzato)
 // ======================
 
-// Impostazioni standard SEO per i bot
-const robots = `User-agent: *
+const robots = `
+# ==========================
+# Robots.txt - AlwaysConvert
+# ==========================
+
+# ✅ Permetti accesso completo ai principali bot
+User-agent: Googlebot
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+# ✅ Regole generali per tutti gli altri user-agent
+User-agent: *
+Disallow: /api/
+Disallow: /trpc/
+Disallow: /_next/
+Disallow: /_vercel/
+Disallow: /*.json$
+Disallow: /*.txt$
+Disallow: /*.ico$
+Disallow: /*.svg$
+Disallow: /*.map$
+Disallow: /server-sitemap.xml
+
+Allow: /
+
+# ✅ Specifica la sitemap principale per tutti i bot
 Sitemap: ${baseUrl}/sitemap.xml
 `.trim();
 
-// Scrive anche il robots.txt
 fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots);
-console.log('✅ robots.txt generato automaticamente');
+console.log('✅ robots.txt generato (versione avanzata)');
+
