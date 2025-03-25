@@ -131,36 +131,39 @@ const Navbar: React.FC = () => {
             {/* Divider */}
             <hr className="my-8 border-gray-200 dark:border-gray-700" />
 
-            {/* ⏱ Info dinamiche + azioni */}
+            {/* 🌙 Time + Tema + GitHub + Footer */}
             <div className="space-y-6">
-              {/* Data e ora ben evidenti */}
-              <TimeNow />
+                {/* ⏰ Data e ora ben evidenti */}
+                <TimeNow />
 
-              {/* Tema toggle */}
-              <div className="flex justify-center">
-                <ModeToggle />
-              </div>
+                {/* 🌗 Tema toggle */}
+                <div className="flex justify-center">
+                    <ModeToggle /
+                </div>
 
-              {/* GitHub */}
-              <a
-                href="https://github.com/ChrisKp1710/AlwaysConvert"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <Button
-                  variant="default"
-                  className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
+                {/* 🔗 GitHub */}
+                <a
+                    href="https://github.com/ChrisKp1710/AlwaysConvert"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
                 >
-                  <span>Github Repo</span>
-                  <BsGithub className="text-xl" />
-                </Button>
-              </a>
+                    <Button
+                    variant="default"
+                    className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
+                    >
+                    <span>Github Repo</span>
+                    <BsGithub className="text-xl" />
+                    </Button>
+                </a>
 
-              {/* Footer */}
-              <p className="text-xs text-muted-foreground text-center pt-2">
-                Made with ❤️ in Italy
-              </p>
+                {/* 🧩 Footer ben distanziato */}
+                <div className="pt-3">
+                    <p className="text-xs text-muted-foreground text-center">
+                    Made with ❤️ in Italy
+                    </p>
+                </div>
             </div>
+
           </div>
         </SheetContent>
       </Sheet>
