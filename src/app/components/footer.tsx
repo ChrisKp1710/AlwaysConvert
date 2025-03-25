@@ -1,38 +1,76 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ShieldCheck, Sparkles } from "lucide-react"; // per icone opzionali
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full py-6 mt-12 border-t border-gray-200 dark:border-gray-800">
-      <div className="container mx-auto px-4 flex flex-col items-center justify-between space-y-2 md:space-y-0 md:flex-row text-sm text-gray-500 dark:text-gray-400">
-        
-        {/* Copyright */}
-        <p className="flex items-center gap-2">
-          © {currentYear} AlwaysConvert. All rights reserved.
-        </p>
+    <footer className="w-full py-6 mt-12 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400">
+      <div className="container mx-auto px-4 flex flex-col items-center gap-4 md:flex-row md:items-start md:justify-between">
 
-        {/* Creato da / Link al tuo sito */}
-        <p className="flex items-center gap-2">
-          <span>By</span>
-          <Link
-            href="https://kodechris.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:underline"
-          >
-            {/* Se vuoi usare la favicon dal tuo sito remoto: */}
+        {/* Left: Copyright + Privacy */}
+        <div className="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
+          <span>© {currentYear} AlwaysConvert. All rights reserved.</span>
+          <div className="flex items-center gap-1 text-xs text-gray-400">
+            <ShieldCheck className="w-4 h-4 text-emerald-500" />
+            <Link
+              href="/privacy-policy"
+              className="hover:underline hover:text-gray-600 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="ml-1 text-gray-300">v1.0.0</span>
+          </div>
+        </div>
+
+        {/* Center: Badge Sitemap + Robots.txt */}
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer">
             <Image
-              src="https://kodechris.dev/favicon.ico" // Caricata dal tuo dominio
-              alt="Kodechris Logo"
-              width={16}
-              height={16}
+              src="https://img.shields.io/badge/Sitemap-Auto--Generated-4ade80?style=for-the-badge&logo=google&logoColor=white"
+              alt="Sitemap Badge"
+              width={130}
+              height={28}
+              className="h-5 w-auto"
             />
-            <span>Christian Koscielniak Pinto</span>
-          </Link>
-        </p>
+          </a>
+          <a href="/robots.txt" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="https://img.shields.io/badge/robots.txt-SEO%20Friendly-blue?style=for-the-badge&logo=google&logoColor=white"
+              alt="Robots.txt Badge"
+              width={130}
+              height={28}
+              className="h-5 w-auto"
+            />
+          </a>
+        </div>
 
+        {/* Right: Autore + Frase */}
+        <div className="flex flex-col items-center md:items-end text-center md:text-right gap-1">
+          <p className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 italic">
+            <Sparkles className="w-4 h-4 text-pink-500" />
+            Developed with passion under the stars
+          </p>
+          <p className="flex items-center gap-2">
+            <span>By</span>
+            <Link
+              href="https://kodechris.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 hover:underline"
+            >
+              <Image
+                src="https://kodechris.dev/favicon.ico"
+                alt="Christian's site"
+                width={20}
+                height={20}
+                className="rounded-full"
+              />
+              <span>Christian Koscielniak Pinto</span>
+            </Link>
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -6,7 +6,17 @@ dotenv.config();
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["kodechris.dev"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'kodechris.dev', // 👈 la tua icona personale
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.shields.io', // 👈 i badge SVG
+      },
+    ],
+    dangerouslyAllowSVG: true, // 👈 richiesto per i badge SVG remoti
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -15,5 +25,3 @@ const nextConfig: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);
-
- 
