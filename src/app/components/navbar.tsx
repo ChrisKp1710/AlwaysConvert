@@ -1,4 +1,5 @@
-// imports
+'use client';
+
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -12,6 +13,7 @@ import {
 } from "./ui/sheet";
 import { ModeToggle } from "./mode-toggle";
 import { LuMenu } from "react-icons/lu";
+import TimeNow from "./time-now"; // ✅ Componente client-side
 
 const Navbar: React.FC = () => {
   return (
@@ -81,28 +83,28 @@ const Navbar: React.FC = () => {
             <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
           </SheetHeader>
 
-          <div className="flex flex-col h-full justify-between py-4 px-3">
-            {/* 👤 Logo + Nome + Slogan */}
-            <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-col h-full justify-between py-6 px-4">
+            {/* 👤 Logo + Nome + Slogan mobile */}
+            <div className="flex items-center gap-3 mb-6">
               <Image
                 alt="AlwaysConvert"
                 src="/img/logo.png"
-                width={36}
-                height={36}
+                width={48}
+                height={48}
                 className="dark:invert"
               />
               <div className="flex flex-col">
-                <span className="text-base font-semibold tracking-tight">
+                <span className="text-xl font-bold tracking-tight">
                   AlwaysConvert
                 </span>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-sm text-muted-foreground">
                   Converti con stile ✨
                 </span>
               </div>
             </div>
 
-            {/* 📋 Link navigazione mobile */}
-            <div className="flex flex-col gap-4 text-lg font-semibold">
+            {/* 📋 Menu mobile link */}
+            <div className="flex flex-col gap-5 text-lg font-semibold">
               <SheetTrigger asChild>
                 <Link href="/">
                   <Button variant="link" className="w-full justify-start">
@@ -127,16 +129,19 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Divider visivo */}
-            <hr className="my-6 border-gray-200 dark:border-gray-700" />
+            <hr className="my-8 border-gray-200 dark:border-gray-700" />
 
-            {/* 🌙 Tema + GitHub */}
-            <div className="space-y-4">
-              {/* Toggle tema */}
+            {/* 🌙 Tema + Time + GitHub + Footer */}
+            <div className="space-y-5">
+              {/* Toggle Tema */}
               <div className="flex justify-center">
                 <ModeToggle />
               </div>
 
-              {/* Bottone GitHub */}
+              {/* ⏰ Data e ora dinamica */}
+              <TimeNow />
+
+              {/* GitHub Button */}
               <a
                 href="https://github.com/ChrisKp1710/AlwaysConvert"
                 target="_blank"
@@ -150,12 +155,12 @@ const Navbar: React.FC = () => {
                   <BsGithub className="text-xl" />
                 </Button>
               </a>
-            </div>
 
-            {/* Footer info opzionale */}
-            <p className="text-xs text-muted-foreground text-center mt-6">
-              Made with ❤️ in Italy
-            </p>
+              {/* Footer info */}
+              <p className="text-xs text-muted-foreground text-center pt-2">
+                Made with ❤️ in Italy
+              </p>
+            </div>
           </div>
         </SheetContent>
       </Sheet>
