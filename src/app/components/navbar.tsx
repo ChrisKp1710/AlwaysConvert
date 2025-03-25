@@ -131,36 +131,37 @@ const Navbar: React.FC = () => {
             {/* Divider visivo */}
             <hr className="my-8 border-gray-200 dark:border-gray-700" />
 
-            {/* 🌙 Tema + Time + GitHub + Footer */}
-            <div className="space-y-5">
-              {/* Toggle Tema */}
-              <div className="flex justify-center">
+            {/* 🌙 Time + Tema + GitHub + Footer */}
+            <div className="space-y-6">
+            {/* ⏰ Data e ora ben leggibili */}
+            <TimeNow />
+
+            {/* 🌗 Tema toggle sotto l’orologio */}
+            <div className="flex justify-center">
                 <ModeToggle />
-              </div>
+            </div>
 
-              {/* ⏰ Data e ora dinamica */}
-              <TimeNow />
-
-              {/* GitHub Button */}
-              <a
+            {/* 🔗 GitHub */}
+            <a
                 href="https://github.com/ChrisKp1710/AlwaysConvert"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-              >
+            >
                 <Button
-                  variant="default"
-                  className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
+                variant="default"
+                className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
                 >
-                  <span>Github Repo</span>
-                  <BsGithub className="text-xl" />
+                <span>Github Repo</span>
+                <BsGithub className="text-xl" />
                 </Button>
-              </a>
+            </a>
 
-              {/* Footer info */}
-              <p className="text-xs text-muted-foreground text-center pt-2">
+            {/* 📍 Footer info */}
+            <p className="text-xs text-muted-foreground text-center pt-2">
                 Made with ❤️ in Italy
-              </p>
+            </p>
             </div>
+
           </div>
         </SheetContent>
       </Sheet>

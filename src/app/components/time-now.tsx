@@ -6,18 +6,15 @@ const TimeNow: React.FC = () => {
   const [dateTime, setDateTime] = useState(new Date());
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setDateTime(new Date());
-    }, 1000);
-
+    const interval = setInterval(() => setDateTime(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
 
   const dateString = dateTime.toLocaleDateString("it-IT", {
     weekday: "long",
-    year: "numeric",
-    month: "long",
     day: "numeric",
+    month: "long",
+    year: "numeric",
   });
 
   const timeString = dateTime.toLocaleTimeString("it-IT", {
@@ -27,9 +24,9 @@ const TimeNow: React.FC = () => {
   });
 
   return (
-    <div className="text-xs text-center text-muted-foreground mt-2 space-y-1">
-      <p>{dateString}</p>
-      <p>{timeString}</p>
+    <div className="text-center space-y-1">
+      <p className="text-sm font-medium text-muted-foreground">{dateString}</p>
+      <p className="text-xl font-semibold text-foreground tracking-wider">{timeString}</p>
     </div>
   );
 };
