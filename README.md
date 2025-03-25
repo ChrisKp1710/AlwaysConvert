@@ -1,7 +1,10 @@
+# Unlimited File Converter - Converti Senza Limiti!
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e42973f4-bced-4bb0-98f2-9b5e3ba4a1a5/deploy-status)](https://app.netlify.com/sites/alwaysconvert/deploys)
 ![License](https://img.shields.io/github/license/ChrisKp1710/AlwaysConvert?style=flat-square)
+![Sitemap](https://img.shields.io/badge/Sitemap-Auto--Generated-4ade80?style=flat-square&logo=google&logoColor=white)
+[![Made by Christian](https://img.shields.io/badge/Made%20by-Christian%20Koscielniak%20Pinto-purple?style=flat-square)](https://kodechris.dev)
 
-# Unlimited File Converter - Converti Senza Limiti!
 
 Benvenuto in AlwaysConvert Unlimited File Converter, l'app che ti permette di convertire file di qualsiasi dimensione e formato, senza restrizioni! Dimentica i limiti imposti da altri servizi: con noi, la tua produttività non conosce confini! ✨
 
