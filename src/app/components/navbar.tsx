@@ -6,8 +6,6 @@ import { BsGithub } from "react-icons/bs";
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger
 } from "./ui/sheet";
 import { ModeToggle } from "./mode-toggle";
@@ -75,58 +73,70 @@ const Navbar: React.FC = () => {
             <LuMenu />
           </span>
         </SheetTrigger>
+
         <SheetContent side="right">
-          <div>
-            <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
+          <div className="flex flex-col h-full justify-between p-4">
+            {/* 👤 HEADER CON LOGO + NOME */}
+            <div className="flex items-center gap-3 mb-4">
+              <Image
+                alt="AlwaysConvert"
+                src="/img/logo.png"
+                width={32}
+                height={32}
+                className="dark:invert"
+              />
+              <span className="text-lg font-semibold tracking-tight">
+                AlwaysConvert
+              </span>
+            </div>
 
-              {/* ✅ FIX: Rimosso SheetDescription */}
-              <div className="flex flex-col w-full h-full gap-2">
-                <SheetTrigger asChild>
-                  <Link href="/">
-                    <Button variant="link" className="w-full font-semibold text-md">
-                      Home
-                    </Button>
-                  </Link>
-                </SheetTrigger>
-                <SheetTrigger asChild>
-                  <Link href="/about">
-                    <Button variant="link" className="w-full font-semibold text-md">
-                      About
-                    </Button>
-                  </Link>
-                </SheetTrigger>
-                <SheetTrigger asChild>
-                  <Link href="/privacy-policy">
-                    <Button variant="link" className="w-full font-semibold text-md">
-                      Privacy Policy
-                    </Button>
-                  </Link>
-                </SheetTrigger>
+            {/* 📋 MENU VOCI PRINCIPALI */}
+            <div className="flex flex-col gap-4 text-lg font-semibold">
+              <SheetTrigger asChild>
+                <Link href="/">
+                  <Button variant="link" className="w-full justify-start">
+                    Home
+                  </Button>
+                </Link>
+              </SheetTrigger>
+              <SheetTrigger asChild>
+                <Link href="/about">
+                  <Button variant="link" className="w-full justify-start">
+                    About
+                  </Button>
+                </Link>
+              </SheetTrigger>
+              <SheetTrigger asChild>
+                <Link href="/privacy-policy">
+                  <Button variant="link" className="w-full justify-start">
+                    Privacy Policy
+                  </Button>
+                </Link>
+              </SheetTrigger>
+            </div>
 
-                <div className="py-2">
-                  <ModeToggle />
-                </div>
-
-                {/* GitHub Button (MOBILE only) */}
-                <div className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">
-                  <a
-                    href="https://github.com/ChrisKp1710/AlwaysConvert"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    className="block"
-                  >
-                    <Button
-                      variant="default"
-                      className="w-full justify-between gap-2 bg-orange-600 rounded-full text-white hover:bg-orange-700 transition"
-                    >
-                      <span>Github Repo</span>
-                      <BsGithub className="text-xl" />
-                    </Button>
-                  </a>
-                </div>
+            {/* 🌙 TOGGLE + GITHUB REPO */}
+            <div className="mt-6 border-t pt-4 space-y-4">
+              {/* Tema toggle */}
+              <div className="flex justify-center">
+                <ModeToggle />
               </div>
-            </SheetHeader>
+
+              {/* Bottone Github */}
+              <a
+                href="https://github.com/ChrisKp1710/AlwaysConvert"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+              >
+                <Button
+                  variant="default"
+                  className="w-full gap-2 bg-orange-600 rounded-full text-white hover:bg-orange-700 transition justify-between px-4 py-2"
+                >
+                  <span>Github Repo</span>
+                  <BsGithub className="text-xl" />
+                </Button>
+              </a>
+            </div>
           </div>
         </SheetContent>
       </Sheet>
