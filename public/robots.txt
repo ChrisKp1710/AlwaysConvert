@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alwaysconvert.netlify.app/sitemap.xml
