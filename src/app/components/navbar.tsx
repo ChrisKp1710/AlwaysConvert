@@ -18,7 +18,7 @@ import TimeNow from "./time-now"; // ✅ Componente client-side
 const Navbar: React.FC = () => {
   return (
     <nav className="fixed z-50 flex items-center justify-between w-full h-24 px-4 py-10 backdrop-blur-md bg-background bg-opacity-30 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-      {/* Logo (Desktop + Mobile) */}
+      {/* Logo desktop */}
       <Link href="/" className="flex items-center space-x-2">
         <Image
           alt="AlwaysConvert"
@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
         </h1>
       </Link>
 
-      {/* Desktop Nav */}
+      {/* Desktop menu */}
       <div className="hidden gap-1 md:gap-2 lg:gap-4 md:flex">
         <Button variant="ghost" className="font-semibold text-md">
           <Link href="/">Home</Link>
@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      {/* Desktop Right Actions */}
+      {/* Desktop actions */}
       <div className="items-center hidden gap-2 md:flex">
         <ModeToggle />
         <Link
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      {/* MOBILE NAV */}
+      {/* Mobile menu */}
       <Sheet>
         <SheetTrigger className="block p-3 md:hidden">
           <span className="text-2xl text-slate-950 dark:text-slate-200">
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
           </SheetHeader>
 
           <div className="flex flex-col h-full justify-between py-6 px-4">
-            {/* 👤 Logo + Nome + Slogan mobile */}
+            {/* 👤 Logo + titolo + slogan */}
             <div className="flex items-center gap-3 mb-6">
               <Image
                 alt="AlwaysConvert"
@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
               </div>
             </div>
 
-            {/* 📋 Menu mobile link */}
+            {/* 📋 Voci navigazione */}
             <div className="flex flex-col gap-5 text-lg font-semibold">
               <SheetTrigger asChild>
                 <Link href="/">
@@ -128,40 +128,39 @@ const Navbar: React.FC = () => {
               </SheetTrigger>
             </div>
 
-            {/* Divider visivo */}
+            {/* Divider */}
             <hr className="my-8 border-gray-200 dark:border-gray-700" />
 
-            {/* 🌙 Time + Tema + GitHub + Footer */}
+            {/* ⏱ Info dinamiche + azioni */}
             <div className="space-y-6">
-            {/* ⏰ Data e ora ben leggibili */}
-            <TimeNow />
+              {/* Data e ora ben evidenti */}
+              <TimeNow />
 
-            {/* 🌗 Tema toggle sotto l’orologio */}
-            <div className="flex justify-center">
+              {/* Tema toggle */}
+              <div className="flex justify-center">
                 <ModeToggle />
-            </div>
+              </div>
 
-            {/* 🔗 GitHub */}
-            <a
+              {/* GitHub */}
+              <a
                 href="https://github.com/ChrisKp1710/AlwaysConvert"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-            >
+              >
                 <Button
-                variant="default"
-                className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
+                  variant="default"
+                  className="w-full gap-2 bg-orange-600 rounded-xl text-white hover:bg-orange-700 transition justify-between px-4 py-3 shadow-md"
                 >
-                <span>Github Repo</span>
-                <BsGithub className="text-xl" />
+                  <span>Github Repo</span>
+                  <BsGithub className="text-xl" />
                 </Button>
-            </a>
+              </a>
 
-            {/* 📍 Footer info */}
-            <p className="text-xs text-muted-foreground text-center pt-2">
+              {/* Footer */}
+              <p className="text-xs text-muted-foreground text-center pt-2">
                 Made with ❤️ in Italy
-            </p>
+              </p>
             </div>
-
           </div>
         </SheetContent>
       </Sheet>

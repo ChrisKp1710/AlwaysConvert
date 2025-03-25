@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import { CalendarDays, Clock } from "lucide-react"; // ✅ Icone minimali
 
 const TimeNow: React.FC = () => {
   const [dateTime, setDateTime] = useState(new Date());
@@ -24,9 +25,18 @@ const TimeNow: React.FC = () => {
   });
 
   return (
-    <div className="text-center space-y-1">
-      <p className="text-sm font-medium text-muted-foreground">{dateString}</p>
-      <p className="text-xl font-semibold text-foreground tracking-wider">{timeString}</p>
+    <div className="text-center space-y-3">
+      {/* 🗓️ Data */}
+      <div className="flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground">
+        <CalendarDays className="w-4 h-4" />
+        <span>{dateString}</span>
+      </div>
+
+      {/* ⏰ Ora */}
+      <div className="flex items-center justify-center gap-2 text-2xl font-bold text-foreground tracking-wide">
+        <Clock className="w-5 h-5" />
+        <span>{timeString}</span>
+      </div>
     </div>
   );
 };
