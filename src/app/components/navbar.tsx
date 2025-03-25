@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
                 <Link
                     href="https://github.com/ChrisKp1710/AlwaysConvert"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer nofollow"
                 >
                     <Button
                     variant="default"
