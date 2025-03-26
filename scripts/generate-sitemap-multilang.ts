@@ -75,8 +75,8 @@ function generateSitemapByLang(lang: string, routes: { route: string; filePath: 
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset 
-  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="https://www.w3.org/1999/xhtml">
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls.join("\n")}
 </urlset>`;
 }
@@ -86,16 +86,19 @@ ${urls.join("\n")}
 // ======================
 
 function generateSitemapIndex(): string {
+  const today = new Date().toISOString().split("T")[0];
+
   const sitemaps = locales
     .map(
       (lang) => `<sitemap>
   <loc>${baseUrl}/sitemap.${lang}.xml</loc>
+  <lastmod>${today}</lastmod>
 </sitemap>`
     )
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemaps}
 </sitemapindex>`;
 }
@@ -105,7 +108,7 @@ ${sitemaps}
 // ======================
 
 function generateRobotsTxt(): string {
-  const now = new Date().toISOString().split("T")[0]; // data YYYY-MM-DD
+  const now = new Date().toISOString().split("T")[0];
 
   return `# ===================================================
 # robots.txt — AlwaysConvert by Christian Koscielniak Pinto
@@ -146,15 +149,8 @@ Allow: /
 
 Sitemap: ${baseUrl}/sitemap.xml
 
-# ========== 📌 NOTE ==========
-
-# Questo file è generato dinamicamente al build.
-# Ottimizzato per la SEO e compatibile con tutte le lingue del sito.
-# Per modifiche, intervenire nel file: scripts/generate-sitemap-multilang.ts
-
-# 🔧 Powered by CKP — Christian Koscielniak Pinto`;
+# 🔧 Powered by CKP`;
 }
-
 
 // ======================
 // Scrittura File
@@ -184,6 +180,5 @@ function writeAll() {
   // Log finale
   console.log(`🎉 Generazione completata con ${routes.length * locales.length} URL totali indicizzati.`);
 }
-
 
 writeAll();
