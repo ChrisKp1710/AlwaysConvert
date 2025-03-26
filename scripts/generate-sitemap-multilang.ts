@@ -20,10 +20,9 @@ function scanPages(dir: string, currentPath = ""): { route: string; filePath: st
 
   for (const entry of entries) {
     const entryPath = path.join(dir, entry.name);
-    const urlPath = `${currentPath}/${entry.name}`;
 
     if (entry.isDirectory()) {
-      pages.push(...scanPages(entryPath, urlPath));
+      pages.push(...scanPages(entryPath, `${currentPath}/${entry.name}`));
     } else if (entry.name === "page.tsx" || entry.name === "page.ts") {
       pages.push({ route: currentPath || "", filePath: entryPath });
     }
