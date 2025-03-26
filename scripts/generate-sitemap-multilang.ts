@@ -9,6 +9,7 @@ const baseUrl = "https://alwaysconvert.app";
 const locales = ["en", "it", "fr", "ar"];
 const appDir = path.resolve(process.cwd(), "src/app/[locale]");
 const publicDir = path.resolve(process.cwd(), "public");
+const sitemapsDir = path.join(publicDir, "sitemaps");
 
 // ======================
 // Utility: Scan delle route da src/app/[locale]/
@@ -90,7 +91,7 @@ function generateSitemapIndex(): string {
   const sitemaps = locales
     .map(
       (lang) => `<sitemap>
-  <loc>${baseUrl}/sitemap.${lang}.xml</loc>
+  <loc>${baseUrl}/sitemaps/sitemap.${lang}.xml</loc>
   <lastmod>${today}</lastmod>
 </sitemap>`
     )
@@ -152,17 +153,35 @@ Sitemap: ${baseUrl}/sitemap.xml
 }
 
 // ======================
+// Netlify _headers
+// ======================
+
+function generateHeadersFile(): void {
+  const lines: string[] = [];
+
+  locales.forEach((lang) => {
+    lines.push(`/sitemaps/sitemap.${lang}.xml`);
+    lines.push(`  Content-Type: application/xml`);
+    lines.push(""); // Spazio tra righe
+  });
+
+  fs.writeFileSync(path.join(publicDir, "_headers"), lines.join("\n"));
+  console.log("✅ _headers generato per Netlify");
+}
+
+// ======================
 // Scrittura File
 // ======================
 
 function writeAll() {
   const routes = scanPages(appDir);
   if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir);
+  if (!fs.existsSync(sitemapsDir)) fs.mkdirSync(sitemapsDir);
 
-  // Sitemap multilingua
+  // Sitemap per lingua (in sitemaps/)
   locales.forEach((lang) => {
     const sitemap = generateSitemapByLang(lang, routes);
-    fs.writeFileSync(path.join(publicDir, `sitemap.${lang}.xml`), sitemap);
+    fs.writeFileSync(path.join(sitemapsDir, `sitemap.${lang}.xml`), sitemap);
     console.log(`✅ sitemap.${lang}.xml generata`);
   });
 
@@ -175,6 +194,9 @@ function writeAll() {
   const robotsTxt = generateRobotsTxt();
   fs.writeFileSync(path.join(publicDir, "robots.txt"), robotsTxt);
   console.log("✅ robots.txt generato — Powered by CKP");
+
+  // Headers per Netlify
+  generateHeadersFile();
 
   // Log finale
   console.log(`🎉 Generazione completata con ${routes.length * locales.length} URL totali indicizzati.`);
