@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://alwaysconvert.netlify.app/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alwaysconvert.netlify.app/en/about" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alwaysconvert.netlify.app/it/about" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alwaysconvert.netlify.app/fr/about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alwaysconvert.netlify.app/ar/about" />
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://alwaysconvert.netlify.app/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alwaysconvert.netlify.app/en" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alwaysconvert.netlify.app/it" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alwaysconvert.netlify.app/fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alwaysconvert.netlify.app/ar" />
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://alwaysconvert.netlify.app/en/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alwaysconvert.netlify.app/en/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alwaysconvert.netlify.app/it/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alwaysconvert.netlify.app/fr/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alwaysconvert.netlify.app/ar/privacy-policy" />
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

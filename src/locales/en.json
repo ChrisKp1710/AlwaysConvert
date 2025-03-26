@@ -1,18 +1,18 @@
 {
   "home": {
     "title": "Free Unlimited File Converter",
-    "description": "Unleash your creativity with AlwaysConvert – the ultimate online tool for unlimited and free multimedia conversion. Transform images, audio, and videos effortlessly, without restrictions. Start converting now and elevate your content like never before!"
+    "description": "Unleash your creativity with AlwaysConvert – the ultimate online tool for converting multimedia files freely and without limits. Transform images, audio, and videos with ease, without restrictions. Start converting now and elevate your content to a new level!"
   },
 
   "about": {
     "cards": [
       {
         "title": "🖼️ Image Conversion",
-        "description": "Resize, crop, rotate, and convert images effortlessly. Formats supported: JPEG, PNG, and more."
+        "description": "Resize, crop, rotate, and convert images effortlessly. Supported formats: JPEG, PNG, and more."
       },
       {
         "title": "🎵 Audio Transformation",
-        "description": "Convert audio formats (MP3, WAV, AAC), adjust bitrates, trim, and merge audio files."
+        "description": "Convert audio formats (MP3, WAV, AAC), adjust bitrates, trim, and merge audio files with simplicity."
       },
       {
         "title": "🎥 Video Metamorphosis",
@@ -24,7 +24,7 @@
       },
       {
         "title": "🌐 Accessible Anywhere",
-        "description": "Convert from your desktop, tablet, or smartphone with ease, anywhere you go."
+        "description": "Convert from your desktop, tablet, or smartphone with ease, wherever you are."
       },
       {
         "title": "🔒 Secure & Private",
@@ -32,11 +32,11 @@
       },
       {
         "title": "💡 User-Friendly Interface",
-        "description": "Intuitive for beginners, powerful for experts—no tech skills required."
+        "description": "Intuitive for beginners, powerful for experts—no technical skills required."
       },
       {
         "title": "📈 Constantly Evolving",
-        "description": "Frequent updates and new features to enhance your multimedia experience."
+        "description": "Frequent updates and new features to continuously enhance your multimedia experience."
       },
       {
         "title": "🌟 AlwaysConvert Advantage",
@@ -47,7 +47,7 @@
 
   "privacyPolicy": {
     "effectiveDate": "Effective Date: {date}",
-    "intro": "AlwaysConvert is committed to protecting your privacy. This policy explains our data handling practices clearly and transparently.",
+    "intro": "AlwaysConvert is committed to protecting your privacy. This policy clearly and transparently explains our data handling practices.",
     "sections": [
       {
         "title": "Information We Collect",
@@ -55,11 +55,11 @@
       },
       {
         "title": "How We Use Your Information",
-        "content": "We use collected data solely to analyze user behavior and improve website performance. We do not sell, rent, or share this information with third parties."
+        "content": "We use collected data exclusively to analyze user behavior and improve website performance. We do not sell, rent, or share this information with third parties."
       },
       {
         "title": "Cookies and Tracking Technologies",
-        "content": "We use cookies and similar technologies to enhance your website experience. You can control cookie preferences via your browser settings, though disabling cookies might impact functionality."
+        "content": "We use cookies and similar technologies to improve your website experience. You can control cookie preferences via your browser settings, though disabling cookies might impact functionality."
       },
       {
         "title": "Data Security",
@@ -83,5 +83,21 @@
       }
     ],
     "consent": "By using AlwaysConvert, you consent to this Privacy Policy. Please discontinue use if you disagree with these terms."
+  },
+
+  "dropzone": {
+    "title": "Click, or drop your files here",
+    "titleHover": "Yes, right there",
+    "errorTitle": "Error uploading your file(s)",
+    "errorDescription": "Allowed Files: Audio, Video and Images.",
+    "errorConverting": "Error Converting File",
+    "converting": "Converting",
+    "done": "Done",
+    "convertTo": "Convert to",
+    "download": "Download",
+    "downloadAll": "Download All",
+    "convertAnother": "Convert Another File(s)",
+    "convertNow": "Convert Now"
   }
+
 }

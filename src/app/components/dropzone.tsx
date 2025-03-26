@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 // imports
@@ -29,6 +31,7 @@ import { Button } from "./ui/button";
 import loadFfmpeg from "@/utils/load-ffmpeg";
 import type { Action } from "../../../types";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
+import { useTranslations } from 'next-intl';
 
 const extensions = {
   image: [
@@ -66,7 +69,9 @@ const extensions = {
   audio: ["mp3", "wav", "ogg", "aac", "wma", "flac", "m4a"],
 };
 
+
 export default function Dropzone() {
+  const t = useTranslations('dropzone'); // 'dropzone' è la chiave del namespace nel JSON
   // variables & hooks
   const { toast } = useToast();
   const [is_hover, setIsHover] = useState<boolean>(false);
@@ -205,13 +210,6 @@ export default function Dropzone() {
       })
     );
   };
-  const checkIsReady = (): void => {
-    let tmp_is_ready = true;
-    actions.forEach((action: Action) => {
-      if (!action.to) tmp_is_ready = false;
-    });
-    setIsReady(tmp_is_ready);
-  };
   const deleteAction = (action: Action): void => {
     setActions(actions.filter((elt) => elt !== action));
     setFiles(files.filter((elt) => elt.name !== action.file_name));
@@ -222,7 +220,17 @@ export default function Dropzone() {
       setFiles([]);
       setIsReady(false);
       setIsConverting(false);
-    } else checkIsReady();
+    } else {
+      const checkIsReady = (): void => {
+        let tmp_is_ready = true;
+        actions.forEach((action: Action) => {
+          if (!action.to) tmp_is_ready = false;
+        });
+        setIsReady(tmp_is_ready);
+      };
+
+      checkIsReady();
+    }
   }, [actions]);
   useEffect(() => {
     load();
@@ -261,24 +269,24 @@ export default function Dropzone() {
 
             {action.is_error ? (
               <Badge variant="destructive" className="flex gap-2">
-                <span>Error Converting File</span>
+                <span>{t('errorConverting')}</span>
                 <BiError />
               </Badge>
             ) : action.is_converted ? (
               <Badge variant="default" className="flex gap-2 bg-green-500">
-                <span>Done</span>
+                <span>{t('done')}</span>
                 <MdDone />
               </Badge>
             ) : action.is_converting ? (
               <Badge variant="default" className="flex gap-2">
-                <span>Converting</span>
+                <span>{t('converting')}</span>
                 <span className="animate-spin">
                   <ImSpinner3 />
                 </span>
               </Badge>
             ) : (
               <div className="text-muted-foreground text-md flex items-center gap-4">
-                <span>Convert to</span>
+                <span>{t('convertTo')}</span>
                 <Select
                   onValueChange={(value) => {
                     if (extensions.audio.includes(value)) {
@@ -358,7 +366,7 @@ export default function Dropzone() {
 
             {action.is_converted ? (
               <Button variant="outline" onClick={() => download(action)}>
-                Download
+                {t('download')}
               </Button>
             ) : (
               <span
@@ -387,7 +395,7 @@ export default function Dropzone() {
                 variant="outline"
                 className="rounded-xl"
               >
-                Convert Another File(s)
+                {t('convertAnother')}
               </Button>
             </div>
           ) : (
@@ -402,7 +410,7 @@ export default function Dropzone() {
                   <ImSpinner3 />
                 </span>
               ) : (
-                <span>Convert Now</span>
+                <span>{t('convertNow')}</span>
               )}
             </Button>
           )}
@@ -449,7 +457,7 @@ export default function Dropzone() {
                   <LuFileSymlink />
                 </div>
                 <h3 className="text-center font-medium text-2xl">
-                  Yes, right there
+                  {t('titleHover')}
                 </h3>
               </>
             ) : (
@@ -458,7 +466,7 @@ export default function Dropzone() {
                   <FiUploadCloud />
                 </div>
                 <h3 className="text-center font-medium text-2xl">
-                  Click, or drop your files here
+                  {t('title')}
                 </h3>
               </>
             )}

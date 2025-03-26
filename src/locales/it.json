@@ -1,18 +1,18 @@
 {
   "home": {
     "title": "Convertitore di File Illimitato Gratuito",
-    "description": "Libera la tua creatività con AlwaysConvert – lo strumento online definitivo per convertire gratuitamente e senza limiti file multimediali. Trasforma immagini, audio e video con facilità e senza restrizioni. Inizia subito a convertire e porta i tuoi contenuti a un livello superiore!"
+    "description": "Libera la tua creatività con AlwaysConvert – lo strumento online definitivo per convertire gratuitamente e senza limiti file multimediali. Trasforma immagini, audio e video con facilità, senza restrizioni. Inizia subito a convertire e porta i tuoi contenuti a un livello superiore!"
   },
 
   "about": {
     "cards": [
       {
         "title": "🖼️ Conversione Immagini",
-        "description": "Ridimensiona, ritaglia, ruota e converti immagini facilmente. Formati supportati: JPEG, PNG e altri."
+        "description": "Ridimensiona, ritaglia, ruota e converti immagini con facilità. Formati supportati: JPEG, PNG e altri."
       },
       {
         "title": "🎵 Trasformazione Audio",
-        "description": "Converti formati audio (MP3, WAV, AAC), regola il bitrate, taglia e unisci file audio."
+        "description": "Converti formati audio (MP3, WAV, AAC), regola il bitrate, taglia e unisci file audio con semplicità."
       },
       {
         "title": "🎥 Metamorfosi Video",
@@ -28,7 +28,7 @@
       },
       {
         "title": "🔒 Sicuro e Privato",
-        "description": "La tua privacy è importante. I file rimangono sicuri e confidenziali, sempre."
+        "description": "La tua privacy è importante. I file rimangono sicuri e riservati, sempre."
       },
       {
         "title": "💡 Interfaccia Intuitiva",
@@ -83,5 +83,21 @@
       }
     ],
     "consent": "Utilizzando AlwaysConvert, acconsenti a questa Politica sulla Privacy. Interrompi l'uso del sito se non sei d'accordo con questi termini."
+  },
+
+  "dropzone": {
+    "title": "Clicca o trascina qui i tuoi file",
+    "titleHover": "Sì, proprio lì",
+    "errorTitle": "Errore nel caricamento del/i file",
+    "errorDescription": "File consentiti: Audio, Video e Immagini.",
+    "errorConverting": "Errore durante la conversione del file",
+    "converting": "Conversione in corso",
+    "done": "Fatto",
+    "convertTo": "Converti in",
+    "download": "Scarica",
+    "downloadAll": "Scarica tutto",
+    "convertAnother": "Converti altri file",
+    "convertNow": "Converti ora"
   }
+
 }

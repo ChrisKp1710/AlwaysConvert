@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'img.shields.io', // 👈 i badge SVG
       },
+      {
+        protocol: 'https',
+        hostname: 'purecatamphetamine.github.io', // 👈 le bandiere
+      }
     ],
     dangerouslyAllowSVG: true, // 👈 richiesto per i badge SVG remoti
   },

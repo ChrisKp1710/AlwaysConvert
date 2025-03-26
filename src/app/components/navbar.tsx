@@ -14,6 +14,7 @@ import {
 import { ModeToggle } from "./mode-toggle";
 import { LuMenu } from "react-icons/lu";
 import TimeNow from "./time-now"; // ✅ Componente client-side
+import LanguageSwitcher from "../components/language-switcher";
 
 const Navbar: React.FC = () => {
   return (
@@ -51,6 +52,7 @@ const Navbar: React.FC = () => {
 
       {/* Desktop actions */}
       <div className="items-center hidden gap-2 md:flex">
+        <LanguageSwitcher />
         <ModeToggle />
         <Link
           href="https://github.com/ChrisKp1710/AlwaysConvert"
@@ -135,6 +137,9 @@ const Navbar: React.FC = () => {
             <div className="space-y-6">
                 {/* ⏰ Data e ora ben evidenti */}
                 <TimeNow />
+
+                {/* Cambio lingua */}
+                <LanguageSwitcher />
 
                 {/* 🌗 Tema toggle */}
                 <div className="flex justify-center">

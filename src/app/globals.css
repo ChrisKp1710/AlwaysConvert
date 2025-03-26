@@ -120,3 +120,33 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+/* === React Flags Select: Light Theme === */
+.ReactFlagsSelect-module_selectOptions__3LNBJ {
+  background-color: white;
+  color: black;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* === React Flags Select: Dark Theme === */
+.dark .ReactFlagsSelect-module_selectOptions__3LNBJ {
+  background-color: #000;
+  color: white;
+  border: 1px solid #2e2e2e; 
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Hover (uniforme tra temi) */
+.ReactFlagsSelect-module_selectOption__3Lf9A:hover {
+  background-color: #f3f4f6;
+}
+.dark .ReactFlagsSelect-module_selectOption__3Lf9A:hover {
+  background-color: #1f2937;
+}

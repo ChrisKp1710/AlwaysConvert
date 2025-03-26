@@ -10,6 +10,7 @@ import Script from "next/script";
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
+import { getMessages } from 'next-intl/server'; // ✅ Serve per caricare i messaggi corretti
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,10 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+    // ✅ Carica i messaggi tradotti per il locale
+    const messages = await getMessages();
+
   return (
     <html lang={locale} suppressHydrationWarning className="h-full">
       <GA GA_MEASUREMENT_ID="G-3GB5LRJ43M" />
@@ -70,21 +75,19 @@ export default async function RootLayout({
         `}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem themes={["light", "dark"]}>
-          
-          {/* NAVBAR + TOASTER */}
-          <Navbar />
-          <Toaster />
-          
-          {/* MAIN: flex-grow spinge il footer in basso quando i contenuti sono pochi */}
-          <main className="container flex-grow mx-auto px-4 pt-32 lg:pt-36 2xl:pt-44 max-w-4xl lg:max-w-6xl 2xl:max-w-7xl">
-          <NextIntlClientProvider>
-            {children}
-          </NextIntlClientProvider>
-          </main>
+          <NextIntlClientProvider locale={locale} messages={messages}> 
+            {/* NAVBAR + TOASTER */}
+            <Navbar />
+            <Toaster />
+            
+            {/* MAIN: flex-grow spinge il footer in basso quando i contenuti sono pochi */}
+            <main className="container flex-grow mx-auto px-4 pt-32 lg:pt-36 2xl:pt-44 max-w-4xl lg:max-w-6xl 2xl:max-w-7xl">
+              {children}
+            </main>
 
-          {/* FOOTER SEMPRE IN FONDO */}
-          <Footer />
-        
+            {/* FOOTER SEMPRE IN FONDO */}
+            <Footer />
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
