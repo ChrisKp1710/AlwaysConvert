@@ -10,7 +10,7 @@ import Script from "next/script";
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
-import { getMessages } from 'next-intl/server'; // ✅ Serve per caricare i messaggi corretti
+import { getMessages } from 'next-intl/server';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,20 +22,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "AlwaysConvert",
-  description: "sito ceh ti permette di convertire viari tipi di file in altri formati, come pdf, doc, jpg, ecc.",
-  icons: {
-    icon: "/img/favicon.ico",           
-    shortcut: "/img/favicon-16x16.png",
-    apple: "/img/apple-touch-icon.png",
-  },
-  creator: "Christian Koscielniak Pinto",
-  keywords: ["AlwaysConvert", "convertitore", "image converter", "video converter", "audio converter", "unlimiterd inmage converter", "unlimited video converter", "file", "pdf", "doc", "jpg", "png", "gif", "mp4", "mp3", "wav", "ogg", "flac", "webm", "avi", "mov", "mkv", "zip", "rar", "7z", "tar", "tar.gz", "tar.bz2", "tar.xz", "tar.zst", "tar.lz", "tar.lz4", "tar.lz5", "tar.lzma", "tar.lzo", "tar.lzop", "tar.lzst", "tar.lzx", "tar.sz", "tar.z", "tar.zstd", "tar.zstd", "tar.zst"],
-  verification: {
-    google: "f4r8dmpfSAirCNiGuvPhyG8V7uss_gyPaJ7KDiZJTe4",
-  },
-};
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  return {
+    title: "AlwaysConvert",
+    description: "sito che ti permette di convertire viari tipi di file in altri formati, come pdf, doc, jpg, ecc.",
+    alternates: {
+      canonical: `https://alwaysconvert.app/${params.locale}`,
+      languages: {
+        en: "https://alwaysconvert.app/en",
+        it: "https://alwaysconvert.app/it",
+        fr: "https://alwaysconvert.app/fr",
+        ar: "https://alwaysconvert.app/ar",
+      },
+    },    
+    icons: {
+      icon: "/img/favicon.ico",
+      shortcut: "/img/favicon-16x16.png",
+      apple: "/img/apple-touch-icon.png",
+    },
+    creator: "Christian Koscielniak Pinto",
+    keywords: [
+      "AlwaysConvert", "convertitore", "image converter", "video converter", "audio converter", "unlimiterd inmage converter", "unlimited video converter", "file",
+      "pdf", "doc", "jpg", "png", "gif", "mp4", "mp3", "wav", "ogg", "flac", "webm", "avi", "mov", "mkv",
+      "zip", "rar", "7z", "tar", "tar.gz", "tar.bz2", "tar.xz", "tar.zst", "tar.lz", "tar.lz4", "tar.lz5", "tar.lzma", "tar.lzo", "tar.lzop", "tar.lzst", "tar.lzx", "tar.sz", "tar.z", "tar.zstd", "tar.zstd", "tar.zst"
+    ],
+    verification: {
+      google: "f4r8dmpfSAirCNiGuvPhyG8V7uss_gyPaJ7KDiZJTe4",
+    },
+  };
+}
+
 
 export default async function RootLayout({
   children,
