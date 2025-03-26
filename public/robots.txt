@@ -3,7 +3,7 @@
 # ===================================================
 
 # Project:       AlwaysConvert
-# Site URL:      https://alwaysconvert.netlify.app
+# Site URL:      https://alwaysconvert.app
 # Sitemap:       Multilingual (sitemap index + per lingua)
 # Author:        Christian Koscielniak Pinto (CKP)
 # Tech Stack:    Next.js · TypeScript · Vite · Netlify
@@ -35,7 +35,7 @@ Allow: /
 
 # ========== 🌐 XML SITEMAP INDEX ==========
 
-Sitemap: https://alwaysconvert.netlify.app/sitemap.xml
+Sitemap: https://alwaysconvert.app/sitemap.xml
 
 # ========== 📌 NOTE ==========
 

@@ -5,7 +5,7 @@ import path from "path";
 // CONFIG
 // ======================
 
-const baseUrl = "https://alwaysconvert.netlify.app";
+const baseUrl = "https://alwaysconvert.app";
 const locales = ["en", "it", "fr", "ar"];
 const appDir = path.resolve(process.cwd(), "src/app/[locale]");
 const publicDir = path.resolve(process.cwd(), "public");
