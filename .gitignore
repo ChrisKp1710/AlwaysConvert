@@ -1,8 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# ========================
+# 🔧 NODE & DEPENDENCIES
+# ========================
+node_modules/
+.pnp/
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,36 +10,46 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# ========================
+# 🧪 TESTING
+# ========================
+coverage/
 
-# next.js
-/.next/
-/out/
+# ========================
+# ⚙️ NEXT.JS BUILD
+# ========================
+.next/
+out/
+dist/              # TS compiled scripts
+build/             # eventuali altre build personalizzate
 
-# production
-/build
+# ========================
+# 🌍 DEPLOY / HOSTING
+# ========================
+.vercel/           # Configurazione Vercel
+.netlify/          # Configurazione Netlify CLI (build, settings)
+.netlify.toml      # Se vuoi ignorarlo, ma spesso è utile committarlo
 
-# misc
+
+
+# ========================
+# 💻 MISC
+# ========================
 .DS_Store
 *.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
+*.log
 *.tsbuildinfo
 next-env.d.ts
+*.tgz               # pacchetti locali creati da yarn pack o npm pack
 
+# ========================
+# 🔐 ENV FILES
+# ========================
+.env
+.env.*
+!.env.example      # ok da tenere se serve come template
 
-#tree progect
+# ========================
+# 🗂️ VARI CUSTOM
+# ========================
 project-tree.txt

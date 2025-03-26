@@ -5,7 +5,8 @@
   "scripts": {
     "build:sitemap": "tsc -p tsconfig.scripts.json",
     "generate-sitemap": "npm run build:sitemap && node dist/scripts/generate-sitemap.js",
-    "build": "npm run generate-sitemap && next build",
+    "generate-sitemap-v2": "npm run build:sitemap && node dist/scripts/generate-sitemap-multilang.js",
+    "build": "npm run generate-sitemap-v2 && next build",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint"
