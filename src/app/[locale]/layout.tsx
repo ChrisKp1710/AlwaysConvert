@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       siteName: "AlwaysConvert",
       images: [
         {
-          url: "/img/alwaysconvert-og-image.jpg",
+          url: "https://alwaysconvert.app/img/alwaysconvert-og-image.jpg",
           width: 1200,
           height: 630,
           alt: "AlwaysConvert - Converti qualsiasi file online",
@@ -72,11 +72,10 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       card: "summary_large_image",
       title: "AlwaysConvert – Converti file gratis",
       description: "Converti qualsiasi file online senza limiti: PDF, DOC, MP3, MP4 e altri formati.",
-      images: ["/img/alwaysconvert-og-image.jpg"],
+      images: ["https://alwaysconvert.app/img/alwaysconvert-og-image.jpg"],
     },
   };
 }
-
 
 export default async function RootLayout({
   children,
