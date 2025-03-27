@@ -1,6 +1,14 @@
+# Sitemap con header XML
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap.xml"
   status = 200
   force = true
-  headers = {Content-Type = "application/xml"}
+  headers = { Content-Type = "application/xml" }
+
+# Redirect permanente da Netlify subdomain al dominio principale
+[[redirects]]
+  from = "https://alwaysconvert.netlify.app/*"
+  to = "https://alwaysconvert.app/:splat"
+  status = 301
+  force = true
