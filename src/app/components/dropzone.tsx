@@ -32,6 +32,8 @@ import loadFfmpeg from "@/utils/load-ffmpeg";
 import type { Action } from "../../../types";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { useTranslations } from 'next-intl';
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 const extensions = {
   image: [
@@ -110,13 +112,26 @@ export default function Dropzone() {
     setIsReady(false);
     setIsConverting(false);
   };
-  const downloadAll = (): void => {
-    for (const action of actions) {
-      if (!action.is_error) {
-        download(action);
-      }
+  const downloadAll = async (): Promise<void> => {
+    const validActions = actions.filter(action => !action.is_error);
+
+    if (validActions.length === 1) {
+      download(validActions[0]);
+      return;
     }
+
+    const zip = new JSZip();
+
+    for (const action of validActions) {
+      const response = await fetch(action.url!);
+      const blob = await response.blob();
+      zip.file(action.output || "converted_file", blob);
+    }
+
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    saveAs(zipBlob, "converted_files.zip");
   };
+
   const download = (action: Action) => {
     const a = document.createElement("a");
     a.style.display = "none";
