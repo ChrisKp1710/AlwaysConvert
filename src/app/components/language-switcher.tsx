@@ -1,23 +1,23 @@
 'use client';
-import React, { useTransition, useState, useRef, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 
-// Mappa locale → codice bandiera
+// Locale → codice bandiera
 const localeMap: Record<string, string> = {
   it: 'IT',
   en: 'GB',
   fr: 'FR',
 };
 
-// Mappa codice bandiera → locale
+// Bandiera → locale
 const flagToLocale = Object.fromEntries(
   Object.entries(localeMap).map(([locale, code]) => [code, locale])
 );
 
-// Mappa codice bandiera → sigla da mostrare accanto alla bandiera
+// Bandiera → sigla da mostrare
 const labelMap: Record<string, string> = {
   IT: 'IT',
   GB: 'EN',
@@ -26,13 +26,10 @@ const labelMap: Record<string, string> = {
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const [, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
+  // Chiudi il dropdown cliccando fuori
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -46,21 +43,20 @@ export default function LanguageSwitcher() {
     };
   }, []);
 
+  // ✅ Set cookie + redirect a nuova lingua
+  const setLocale = (newLocale: string) => {
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/`;
+    window.location.href = `/${newLocale}`;
+  };
+
   const handleSelect = (countryCode: string) => {
     const newLocale = flagToLocale[countryCode];
     if (!newLocale || newLocale === locale) return;
-
-    const segments = pathname.split('/');
-    segments[1] = newLocale;
-
-    startTransition(() => {
-      router.replace(segments.join('/'));
-    });
+    setLocale(newLocale);
   };
 
   const selectedCountry = localeMap[locale];
-  const selectableCountries = Object.values(localeMap)
-    .filter(code => code !== selectedCountry);
+  const selectableCountries = Object.values(localeMap).filter(code => code !== selectedCountry);
 
   return (
     <div className="relative" ref={dropdownRef}>
