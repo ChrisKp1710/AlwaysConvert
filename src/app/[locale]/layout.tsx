@@ -24,12 +24,14 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: { locale: string } }): Promise<Metadata> {
+  const { locale } = await Promise.resolve(props.params); // ✅ workaround ufficiale
+
   return {
     title: "AlwaysConvert – Converti file online gratis",
     description: "Converti PDF, DOC, JPG, MP4 e molti altri formati gratuitamente. Nessuna registrazione. Nessun limite.",
     alternates: {
-      canonical: `https://alwaysconvert.app/${params.locale}`,
+      canonical: `https://alwaysconvert.app/${locale}`, // ✅ usa "locale"
       languages: {
         en: "https://alwaysconvert.app/en",
         it: "https://alwaysconvert.app/it",
@@ -55,7 +57,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     openGraph: {
       title: "AlwaysConvert – Converti file gratis e senza limiti",
       description: "Converti qualsiasi file in PDF, JPG, MP4 e altro – 100% gratuito, nessuna registrazione richiesta.",
-      url: `https://alwaysconvert.app/${params.locale}`,
+      url: `https://alwaysconvert.app/${locale}`, // ✅ usa "locale"
       siteName: "AlwaysConvert",
       images: [
         {
@@ -65,7 +67,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
           alt: "AlwaysConvert - Converti qualsiasi file online",
         },
       ],
-      locale: params.locale,
+      locale: locale, // ✅ anche qui
       type: "website",
     },
     twitter: {
@@ -77,14 +79,11 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   };
 }
 
-export default async function RootLayout({
-  children,
-  params
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const { locale } = params;
+
+export default async function RootLayout(
+  { children, params }: { children: React.ReactNode; params: { locale: string } }
+) {
+  const { locale } = await Promise.resolve(params);
   if (!hasLocale(routing.locales, locale)) notFound();
 
   const messages = await getMessages();
@@ -107,8 +106,8 @@ export default async function RootLayout({
 
       <body
         className={`
-          ${geistSans.variable} 
-          ${geistMono.variable} 
+          ${geistSans.variable}
+          ${geistMono.variable}
           antialiased
           flex
           flex-col
