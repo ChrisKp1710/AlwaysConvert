@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useTransition } from 'react';
 import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 
-// Locale → codice bandiera
+// Mappa locale → codice bandiera
 const localeMap: Record<string, string> = {
   it: 'IT',
   en: 'GB',
@@ -17,7 +18,7 @@ const flagToLocale = Object.fromEntries(
   Object.entries(localeMap).map(([locale, code]) => [code, locale])
 );
 
-// Bandiera → sigla da mostrare
+// Bandiera → label da mostrare
 const labelMap: Record<string, string> = {
   IT: 'IT',
   GB: 'EN',
@@ -26,33 +27,39 @@ const labelMap: Record<string, string> = {
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Chiudi il dropdown cliccando fuori
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  // ✅ Set cookie + redirect a nuova lingua
-  const setLocale = (newLocale: string) => {
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/`;
-    window.location.href = `/${newLocale}`;
-  };
 
   const handleSelect = (countryCode: string) => {
     const newLocale = flagToLocale[countryCode];
     if (!newLocale || newLocale === locale) return;
-    setLocale(newLocale);
+
+    // ✅ Salva cookie per middleware
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/`;
+
+    // ✅ Costruisci nuovo path sostituendo la lingua
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+
+    // ✅ Navigazione fluida senza ricaricare
+    startTransition(() => {
+      router.replace(segments.join('/'));
+    });
+
+    setIsOpen(false);
   };
 
   const selectedCountry = localeMap[locale];
@@ -83,10 +90,7 @@ export default function LanguageSwitcher() {
             <div
               key={country}
               className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-zinc-700 cursor-pointer transition-colors"
-              onClick={() => {
-                handleSelect(country);
-                setIsOpen(false);
-              }}
+              onClick={() => handleSelect(country)}
             >
               <Image
                 src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country}.svg`}
