@@ -47,14 +47,16 @@ export default function LanguageSwitcher() {
     const newLocale = flagToLocale[countryCode];
     if (!newLocale || newLocale === locale) return;
 
-    // ✅ Salva cookie per middleware
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/`;
+    // ✅ Salva il cookie NEXT_LOCALE con scadenza di 1 anno, Secure e SameSite=Lax
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; expires=${expires.toUTCString()}; Secure; SameSite=Lax`;
 
-    // ✅ Costruisci nuovo path sostituendo la lingua
+    // ✅ Costruisci il nuovo path sostituendo la lingua nell’URL
     const segments = pathname.split('/');
     segments[1] = newLocale;
 
-    // ✅ Navigazione fluida senza ricaricare
+    // ✅ Navigazione fluida senza ricarico
     startTransition(() => {
       router.replace(segments.join('/'));
     });
