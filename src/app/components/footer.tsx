@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ShieldCheck, Sparkles } from "lucide-react"; // per icone opzionali
+import { ShieldCheck, Sparkles, Users } from "lucide-react"; // aggiunto Users
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -46,12 +46,13 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Right: Autore + Frase */}
-        <div className="flex flex-col items-center md:items-end text-center md:text-right gap-1">
-          <p className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 italic">
+        {/* Right: Frase + Autore + Icona Team */}
+        <div className="flex flex-col md:self-end text-center md:text-right gap-1">
+          <p className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 italic leading-snug">
             <Sparkles className="w-4 h-4 text-pink-500" />
             Developed with passion under the stars
           </p>
+
           <p className="flex items-center gap-2">
             <span>By</span>
             <Link
@@ -68,6 +69,17 @@ export default function Footer() {
                 className="rounded-full"
               />
               <span>Christian Koscielniak Pinto</span>
+            </Link>
+
+            {/* 👥 Icona Team */}
+            <Link
+              href="/humans.txt"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Meet the team"
+              className="ml-2 inline-flex items-center justify-center w-8 h-8 rounded-xl border border-pink-500 hover:scale-110 hover:rotate-2 transition-transform duration-300 shadow-sm bg-white/30 dark:bg-white/10"
+            >
+              <Users className="w-4 h-4 text-pink-500" />
             </Link>
           </p>
         </div>

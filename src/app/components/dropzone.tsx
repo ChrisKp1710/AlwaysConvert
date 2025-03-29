@@ -83,7 +83,7 @@ export default function Dropzone() {
   const [is_done, setIsDone] = useState<boolean>(false);
   const ffmpegRef = useRef<any>(null);
   const [defaultValues, setDefaultValues] = useState<string>("video");
-  const [selcted, setSelected] = useState<string>("...");
+  //const [selcted, setSelected] = useState<string>("...");
   const accepted_files = {
     "image/*": [
       ".jpg",
@@ -121,12 +121,12 @@ export default function Dropzone() {
     const a = document.createElement("a");
     a.style.display = "none";
     a.href = action.url as string;
-  
+
     a.download = action.output || "default_output_name"; // Fornisci un valore predefinito
-  
+
     document.body.appendChild(a);
     a.click();
-  
+
     // Clean up after download
     if (action.url) {
       URL.revokeObjectURL(action.url);
@@ -294,10 +294,9 @@ export default function Dropzone() {
                     } else if (extensions.video.includes(value)) {
                       setDefaultValues("video");
                     }
-                    setSelected(value);
-                    updateAction(action.file_name, value);
+                    updateAction(action.file_name, value); // aggiorna il file giusto
                   }}
-                  value={selcted}
+                  value={action.to ?? "..."} // ✅ usa il valore specifico del file
                 >
                   <SelectTrigger className="w-32 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
                     <SelectValue placeholder="..." />

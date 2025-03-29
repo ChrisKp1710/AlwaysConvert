@@ -1,0 +1,28 @@
+/************************************************************
+ * humans.txt — Crafted with ❤️ by real humans, not robots  *
+ * Project: AlwaysConvert                                   *
+ * URL: https://alwaysconvert.app                           *
+ * Authors: CKP & LC                                        *
+ * Generated on: 2025-03-29                                 *
+ ************************************************************/
+
+TEAM:
+  👨‍💻 Developer & UI Engineer: Christian Koscielniak Pinto (CKP)
+  👩‍💼 SEO & Marketing Strategist: Laura Ceccarelli (LC)
+  ⚙️ Tech Stack: Next.js · TypeScript · Tailwind CSS · Vite · Netlify
+  🔍 Debugging sessions: ∞ (infinite)
+  ☕ Fuel: Double espresso, user feedback, and Google Analytics
+  🎯 Mission: Convert files, empower users, and optimize everything
+
+ABOUT:
+  - No pixels were harmed during development.
+  - All components are reusable, responsive, and 100% cruelty-free.
+  - Dark mode isn’t a feature. It’s a lifestyle.
+
+EASTER EGG:
+  If you're reading this, you're officially one of us. Respect 🙌
+
+📜 LICENSE:
+  MIT — Free to explore, remix, contribute, or just enjoy.
+
+Made with 🇮🇹 Italian creativity, clean code passion, and a sprinkle of SEO magic ✨
