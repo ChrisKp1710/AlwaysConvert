@@ -97,7 +97,9 @@
     "download": "Download",
     "downloadAll": "Download All",
     "convertAnother": "Convert Another File(s)",
-    "convertNow": "Convert Now"
+    "convertNow": "Convert Now",
+    "globalFormat": "Apply format to all compatible files",
+    "selectFormatForAll": "Select a format for all"
   }
 
 }
