@@ -3,11 +3,9 @@
     "compilerOptions": {
       "outDir": "dist/scripts",
       "module": "CommonJS",
-      "moduleResolution": "node",      // ✅ risolve il problema
-      "target": "ES2020",
+      "moduleResolution": "node",
       "noEmit": false,
       "strict": true
     },
     "include": ["scripts/*.ts"]
   }
-  

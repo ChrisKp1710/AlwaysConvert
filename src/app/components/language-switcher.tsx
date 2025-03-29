@@ -45,24 +45,17 @@ export default function LanguageSwitcher() {
 
   const handleSelect = (countryCode: string) => {
     const newLocale = flagToLocale[countryCode];
-    if (!newLocale || newLocale === locale) return;
+    if (!newLocale || newLocale === locale) return; // Se stessa lingua, non fare nulla
 
-    // ✅ Salva il cookie NEXT_LOCALE con scadenza di 1 anno, Secure e SameSite=Lax
+    // Imposta cookie persistente per il middleware (1 anno)
     const expires = new Date();
     expires.setFullYear(expires.getFullYear() + 1);
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; expires=${expires.toUTCString()}; Secure; SameSite=Lax`;
 
-    // ✅ Costruisci il nuovo path sostituendo la lingua nell’URL
-    const segments = pathname.split('/');
-    segments[1] = newLocale;
-
-    // ✅ Navigazione fluida senza ricarico
-    startTransition(() => {
-      router.replace(segments.join('/'));
-    });
-
-    setIsOpen(false);
+    // Redirect completo per attivare il middleware e aggiornare tutto (URL, lingua, cookie)
+    window.location.href = `/${newLocale}${pathname.slice(3)}`;
   };
+
 
   const selectedCountry = localeMap[locale];
   const selectableCountries = Object.values(localeMap).filter(code => code !== selectedCountry);
