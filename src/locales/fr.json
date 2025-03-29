@@ -3,7 +3,7 @@
       "title": "Convertisseur de fichiers gratuit et illimité",
       "description": "Libérez votre créativité avec AlwaysConvert – l'outil en ligne ultime pour convertir gratuitement et sans limites vos fichiers multimédias. Transformez images, audio et vidéos avec facilité, sans restrictions. Commencez à convertir maintenant et élevez vos contenus à un niveau supérieur !"
     },
-    
+
     "about": {
       "cards": [
         {
@@ -96,7 +96,9 @@
       "download": "Télécharger",
       "downloadAll": "Tout télécharger",
       "convertAnother": "Convertir d'autres fichiers",
-      "convertNow": "Convertir maintenant"
+      "convertNow": "Convertir maintenant",
+      "globalFormat": "Appliquer le format à tous les fichiers compatibles",
+      "selectFormatForAll": "Sélectionner un format pour tous"
     }
 
 }

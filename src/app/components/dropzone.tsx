@@ -32,6 +32,8 @@ import loadFfmpeg from "@/utils/load-ffmpeg";
 import type { Action } from "../../../types";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { useTranslations } from 'next-intl';
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 const extensions = {
   image: [
@@ -110,13 +112,26 @@ export default function Dropzone() {
     setIsReady(false);
     setIsConverting(false);
   };
-  const downloadAll = (): void => {
-    for (const action of actions) {
-      if (!action.is_error) {
-        download(action);
-      }
+  const downloadAll = async (): Promise<void> => {
+    const validActions = actions.filter(action => !action.is_error);
+
+    if (validActions.length === 1) {
+      download(validActions[0]);
+      return;
     }
+
+    const zip = new JSZip();
+
+    for (const action of validActions) {
+      const response = await fetch(action.url!);
+      const blob = await response.blob();
+      zip.file(action.output || "converted_file", blob);
+    }
+
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    saveAs(zipBlob, "converted_files.zip");
   };
+
   const download = (action: Action) => {
     const a = document.createElement("a");
     a.style.display = "none";
@@ -245,6 +260,121 @@ export default function Dropzone() {
   if (actions.length) {
     return (
       <div className="space-y-6">
+
+        {/* Selettore globale per formati - separati con UI semplificata */}
+        {actions.length > 1 && (
+          <div className="px-4 lg:px-10 flex flex-wrap gap-4">  {/* 👈 affianca i selettori */}
+
+            {/* Selettore per immagini */}
+            {actions.some(a => a.file_type.includes("image")) && (
+              <div className="flex items-center gap-4">
+                <Select
+                  onValueChange={(value) => {
+                    const updatedActions = actions.map((action) => {
+                      const isImage = action.file_type.includes("image") && extensions.image.includes(value);
+                      if (isImage) {
+                        return {
+                          ...action,
+                          to: value,
+                        };
+                      }
+                      return action;
+                    });
+                    setActions(updatedActions);
+                  }}
+                >
+                  <SelectTrigger className="w-40 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
+                    <SelectValue placeholder="Image format" />
+                  </SelectTrigger>
+                  <SelectContent className="h-fit">
+                    <div className="grid grid-cols-2 gap-2 w-fit">
+                      {extensions.image.map((ext) => (
+                        <div key={ext} className="col-span-1 text-center">
+                          <SelectItem value={ext} className="mx-auto">
+                            {ext}
+                          </SelectItem>
+                        </div>
+                      ))}
+                    </div>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {/* Selettore per video */}
+            {actions.some(a => a.file_type.includes("video")) && (
+              <div className="flex items-center gap-4">
+                <Select
+                  onValueChange={(value) => {
+                    const updatedActions = actions.map((action) => {
+                      const isVideo = action.file_type.includes("video") && extensions.video.includes(value);
+                      if (isVideo) {
+                        return {
+                          ...action,
+                          to: value,
+                        };
+                      }
+                      return action;
+                    });
+                    setActions(updatedActions);
+                  }}
+                >
+                  <SelectTrigger className="w-40 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
+                    <SelectValue placeholder="Video format" />
+                  </SelectTrigger>
+                  <SelectContent className="h-fit">
+                    <div className="grid grid-cols-2 gap-2 w-fit">
+                      {extensions.video.map((ext) => (
+                        <div key={ext} className="col-span-1 text-center">
+                          <SelectItem value={ext} className="mx-auto">
+                            {ext}
+                          </SelectItem>
+                        </div>
+                      ))}
+                    </div>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {/* Selettore per audio */}
+            {actions.some(a => a.file_type.includes("audio")) && (
+              <div className="flex items-center gap-4">
+                <Select
+                  onValueChange={(value) => {
+                    const updatedActions = actions.map((action) => {
+                      const isAudio = action.file_type.includes("audio") && extensions.audio.includes(value);
+                      if (isAudio) {
+                        return {
+                          ...action,
+                          to: value,
+                        };
+                      }
+                      return action;
+                    });
+                    setActions(updatedActions);
+                  }}
+                >
+                  <SelectTrigger className="w-40 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
+                    <SelectValue placeholder="Audio format" />
+                  </SelectTrigger>
+                  <SelectContent className="h-fit">
+                    <div className="grid grid-cols-2 gap-2 w-fit">
+                      {extensions.audio.map((ext) => (
+                        <div key={ext} className="col-span-1 text-center">
+                          <SelectItem value={ext} className="mx-auto">
+                            {ext}
+                          </SelectItem>
+                        </div>
+                      ))}
+                    </div>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
+        )}
+
         {actions.map((action: Action, i: any) => (
           <div
             key={i}
@@ -294,9 +424,9 @@ export default function Dropzone() {
                     } else if (extensions.video.includes(value)) {
                       setDefaultValues("video");
                     }
-                    updateAction(action.file_name, value); // aggiorna il file giusto
+                    updateAction(action.file_name, value);
                   }}
-                  value={action.to ?? "..."} // ✅ usa il valore specifico del file
+                  value={action.to ?? "..."}
                 >
                   <SelectTrigger className="w-32 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
                     <SelectValue placeholder="..." />
@@ -377,6 +507,7 @@ export default function Dropzone() {
             )}
           </div>
         ))}
+
         <div className="flex w-full justify-end">
           {is_done ? (
             <div className="space-y-4 w-fit">
