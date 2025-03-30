@@ -11,6 +11,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
+import SchemaTags from "../components/SchemaTags";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,7 +80,6 @@ export async function generateMetadata(props: { params: { locale: string } }): P
   };
 }
 
-
 export default async function RootLayout(
   { children, params }: { children: React.ReactNode; params: { locale: string } }
 ) {
@@ -94,6 +94,7 @@ export default async function RootLayout(
         <link rel="canonical" href={`https://alwaysconvert.app/${locale}`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <SchemaTags />
       </head>
 
       <GA GA_MEASUREMENT_ID="G-3GB5LRJ43M" />
