@@ -94,6 +94,11 @@ export default async function RootLayout(
         <link rel="canonical" href={`https://alwaysconvert.app/${locale}`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7550158715508006"
+          crossOrigin="anonymous"
+        />
         <SchemaTags />
       </head>
 
