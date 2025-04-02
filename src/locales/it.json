@@ -99,7 +99,12 @@
     "convertAnother": "Converti altri file",
     "convertNow": "Converti ora",
     "globalFormat": "Applica formato a tutti i file compatibili",
-    "selectFormatForAll": "Seleziona un formato per tutti"
+    "selectFormatForAll": "Seleziona un formato per tutti",
+    "filesToConvert": "File da convertire",
+    "applyToAll": "Applica a tutti",
+    "selectFormat": "Seleziona formato",
+    "convertAll": "Converti tutto",
+    "formatPlaceholder": "Formato"
   }
 
 }

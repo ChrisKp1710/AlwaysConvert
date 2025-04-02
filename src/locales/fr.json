@@ -98,7 +98,12 @@
       "convertAnother": "Convertir d'autres fichiers",
       "convertNow": "Convertir maintenant",
       "globalFormat": "Appliquer le format à tous les fichiers compatibles",
-      "selectFormatForAll": "Sélectionner un format pour tous"
+      "selectFormatForAll": "Sélectionner un format pour tous",
+      "filesToConvert": "Fichiers à convertir",
+      "applyToAll": "Appliquer à tous",
+      "selectFormat": "Sélectionner un format",
+      "convertAll": "Tout convertir",
+      "formatPlaceholder": "Format"
     }
 
 }

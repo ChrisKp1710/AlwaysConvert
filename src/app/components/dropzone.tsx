@@ -1,25 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-// imports
+import { useState, useEffect } from "react";
+import ReactDropzone from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
 import { LuFileSymlink } from "react-icons/lu";
-import { MdClose } from "react-icons/md";
-import ReactDropzone from "react-dropzone";
-import bytesToSize from "@/utils/bytes-to-size";
-import fileToIcon from "@/utils/file-to-icon";
-import { useState, useEffect, useRef } from "react";
-import { useToast } from "./ui/use-toast";
-import compressFileName from "@/utils/compress-file-name";
-import { Skeleton } from "./ui/skeleton";
-import convertFile from "@/utils/convert";
-import { ImSpinner3 } from "react-icons/im";
-import { MdDone } from "react-icons/md";
-import { Badge } from "./ui/badge";
+import { MdClose, MdDone } from "react-icons/md";
 import { HiOutlineDownload } from "react-icons/hi";
 import { BiError } from "react-icons/bi";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { ImSpinner3 } from "react-icons/im";
+
+import { useToast } from "./ui/use-toast";
 import {
   Select,
   SelectContent,
@@ -28,581 +18,283 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Button } from "./ui/button";
-import loadFfmpeg from "@/utils/load-ffmpeg";
-import type { Action } from "../../../types";
-import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { useTranslations } from 'next-intl';
+import { Badge } from "./ui/badge";
+
+import bytesToSize from "@/utils/bytes-to-size";
+import compressFileName from "@/utils/compress-file-name";
+import fileToIcon from "@/utils/file-to-icon";
+
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { useTranslations } from "next-intl";
+import type { Action } from "../../../types";
 
+// Estensioni supportate
 const extensions = {
-  image: [
-    "jpg",
-    "jpeg",
-    "png",
-    "gif",
-    "bmp",
-    "webp",
-    "ico",
-    "tif",
-    "tiff",
-    "svg",
-    "raw",
-    "tga",
-  ],
-  video: [
-    "mp4",
-    "m4v",
-    "mp4v",
-    "3gp",
-    "3g2",
-    "avi",
-    "mov",
-    "wmv",
-    "mkv",
-    "flv",
-    "ogv",
-    "webm",
-    "h264",
-    "264",
-    "hevc",
-    "265",
-  ],
+  image: ["jpg", "jpeg", "png", "gif", "bmp", "webp", "ico", "tif", "tiff", "svg", "raw", "tga"],
+  video: ["mp4", "m4v", "mp4v", "3gp", "3g2", "avi", "mov", "wmv", "mkv", "flv", "ogv", "webm", "h264", "264", "hevc", "265"],
   audio: ["mp3", "wav", "ogg", "aac", "wma", "flac", "m4a"],
 };
 
-
 export default function Dropzone() {
-  const t = useTranslations('dropzone'); // 'dropzone' è la chiave del namespace nel JSON
-  // variables & hooks
+  const t = useTranslations("dropzone");
   const { toast } = useToast();
-  const [is_hover, setIsHover] = useState<boolean>(false);
+
+  const [is_hover, setIsHover] = useState(false);
   const [actions, setActions] = useState<Action[]>([]);
-  const [is_ready, setIsReady] = useState<boolean>(false);
-  const [files, setFiles] = useState<Array<any>>([]);
-  const [is_loaded, setIsLoaded] = useState<boolean>(false);
-  const [is_converting, setIsConverting] = useState<boolean>(false);
-  const [is_done, setIsDone] = useState<boolean>(false);
-  const ffmpegRef = useRef<any>(null);
-  const [defaultValues, setDefaultValues] = useState<string>("video");
-  //const [selcted, setSelected] = useState<string>("...");
+  const [files, setFiles] = useState<any[]>([]);
+  const [is_ready, setIsReady] = useState(false);
+  const [is_converting, setIsConverting] = useState(false);
+  const [is_done, setIsDone] = useState(false);
+  const [globalFormat, setGlobalFormat] = useState<string>("");
+
+  const [hasImage, setHasImage] = useState(false);
+  const [hasVideo, setHasVideo] = useState(false);
+  const [hasAudio, setHasAudio] = useState(false);
+
   const accepted_files = {
-    "image/*": [
-      ".jpg",
-      ".jpeg",
-      ".png",
-      ".gif",
-      ".bmp",
-      ".webp",
-      ".ico",
-      ".tif",
-      ".tiff",
-      ".raw",
-      ".tga",
-    ],
-    "audio/*": [],
-    "video/*": [],
+    "image/*": extensions.image.map(ext => `.${ext}`),
+    "audio/*": extensions.audio.map(ext => `.${ext}`),
+    "video/*": extensions.video.map(ext => `.${ext}`),
   };
 
-  // functions
-  const reset = () => {
-    setIsDone(false);
-    setActions([]);
-    setFiles([]);
-    setIsReady(false);
-    setIsConverting(false);
-  };
-  const downloadAll = async (): Promise<void> => {
-    const validActions = actions.filter(action => !action.is_error);
+  // Applica formato globale solo ai file compatibili
+  const applyGlobalFormat = (format: string) => {
+    setGlobalFormat(format);
+    setActions(actions.map(action => {
+      const isImage = action.file_type.startsWith("image") && extensions.image.includes(format);
+      const isVideo = action.file_type.startsWith("video") && extensions.video.includes(format);
+      const isAudio = action.file_type.startsWith("audio") && extensions.audio.includes(format);
 
-    if (validActions.length === 1) {
-      download(validActions[0]);
-      return;
-    }
-
-    const zip = new JSZip();
-
-    for (const action of validActions) {
-      const response = await fetch(action.url!);
-      const blob = await response.blob();
-      zip.file(action.output || "converted_file", blob);
-    }
-
-    const zipBlob = await zip.generateAsync({ type: "blob" });
-    saveAs(zipBlob, "converted_files.zip");
-  };
-
-  const download = (action: Action) => {
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = action.url as string;
-
-    a.download = action.output || "default_output_name"; // Fornisci un valore predefinito
-
-    document.body.appendChild(a);
-    a.click();
-
-    // Clean up after download
-    if (action.url) {
-      URL.revokeObjectURL(action.url);
-    }
-    document.body.removeChild(a);
-  };
-  const convert = async (): Promise<any> => {
-    let tmp_actions = actions.map((elt) => ({
-      ...elt,
-      is_converting: true,
+      if (isImage || isVideo || isAudio) {
+        return { ...action, to: format };
+      }
+      return action;
     }));
+  };
+
+  const handleUpload = (data: File[]) => {
+    setIsHover(false);
+    const tmp: Action[] = data.map(file => ({
+      file_name: file.name,
+      file_size: file.size,
+      from: file.name.split('.').pop() || "",
+      to: null,
+      file_type: file.type,
+      file,
+      is_converted: false,
+      is_converting: false,
+      is_error: false,
+    }));
+    setFiles(data);
+    setActions(tmp);
+  };
+
+  const updateAction = (file_name: string, to: string) => {
+    setActions(actions.map(action =>
+      action.file_name === file_name ? { ...action, to } : action
+    ));
+  };
+
+  const deleteAction = (action: Action) => {
+    setActions(actions.filter(a => a !== action));
+    setFiles(files.filter(f => f.name !== action.file_name));
+  };
+
+  const convert = async () => {
+    let tmp_actions = actions.map(a => ({ ...a, is_converting: true }));
     setActions(tmp_actions);
     setIsConverting(true);
+
     for (const action of tmp_actions) {
       try {
-        const { url, output } = await convertFile(ffmpegRef.current, action);
-        tmp_actions = tmp_actions.map((elt) =>
-          elt === action
-            ? {
-                ...elt,
-                is_converted: true,
-                is_converting: false,
-                url,
-                output,
-              }
-            : elt
+        const formData = new FormData();
+        formData.append("files", action.file);
+        formData.append("to", action.to!);
+
+        const res = await fetch("http://localhost:5050/convert", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!res.ok) throw new Error("Errore backend");
+
+        const blob = await res.blob();
+        const filename = res.headers.get("Content-Disposition")?.split("filename=")[1]?.replace(/\"/g, "") || "converted";
+
+        const url = URL.createObjectURL(blob);
+        tmp_actions = tmp_actions.map(a =>
+          a === action ? { ...a, is_converted: true, is_converting: false, url, output: filename } : a
         );
         setActions(tmp_actions);
-      } catch (err) {
-        tmp_actions = tmp_actions.map((elt) =>
-          elt === action
-            ? {
-                ...elt,
-                is_converted: false,
-                is_converting: false,
-                is_error: true,
-              }
-            : elt
+      } catch {
+        tmp_actions = tmp_actions.map(a =>
+          a === action ? { ...a, is_converted: false, is_converting: false, is_error: true } : a
         );
         setActions(tmp_actions);
       }
     }
-    setIsDone(true);
+
     setIsConverting(false);
+    setIsDone(true);
   };
-  function handleUpload(data: File[]): void {
-    handleExitHover();
-    setFiles(data);
-    const tmp: Action[] = [];
-    data.forEach((file: File) => {
-      const formData = new FormData();
-      formData.append('file', file); // Utilizza formData qui
-      tmp.push({
-        file_name: file.name,
-        file_size: file.size,
-        from: file.name.slice(((file.name.lastIndexOf(".") - 1) >>> 0) + 2),
-        to: null,
-        file_type: file.type,
-        file,
-        is_converted: false,
-        is_converting: false,
-        is_error: false,
-      });
-    });
-    setActions(tmp);
-  }
-  const handleHover = (): void => setIsHover(true);
-  const handleExitHover = (): void => setIsHover(false);
-  const updateAction = (file_name: string, to: string) => {
-    setActions(
-      actions.map((action): Action => {
-        if (action.file_name === file_name) {
-          console.log("FOUND");
-          return {
-            ...action,
-            to,
-          };
-        }
 
-        return action;
-      })
-    );
+  const download = (action: Action) => {
+    const a = document.createElement("a");
+    a.href = action.url!;
+    a.download = action.output || "download";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(action.url!);
+    document.body.removeChild(a);
   };
-  const deleteAction = (action: Action): void => {
-    setActions(actions.filter((elt) => elt !== action));
-    setFiles(files.filter((elt) => elt.name !== action.file_name));
-  };
-  useEffect(() => {
-    if (!actions.length) {
-      setIsDone(false);
-      setFiles([]);
-      setIsReady(false);
-      setIsConverting(false);
-    } else {
-      const checkIsReady = (): void => {
-        let tmp_is_ready = true;
-        actions.forEach((action: Action) => {
-          if (!action.to) tmp_is_ready = false;
-        });
-        setIsReady(tmp_is_ready);
-      };
 
-      checkIsReady();
+  const downloadAll = async () => {
+    const validActions = actions.filter(a => !a.is_error);
+    if (validActions.length === 1) return download(validActions[0]);
+
+    const zip = new JSZip();
+    for (const action of validActions) {
+      const res = await fetch(action.url!);
+      const blob = await res.blob();
+      zip.file(action.output || "converted", blob);
     }
-  }, [actions]);
-  useEffect(() => {
-    load();
-  }, []);
-  const load = async () => {
-    const ffmpeg_response: FFmpeg = await loadFfmpeg();
-    ffmpegRef.current = ffmpeg_response;
-    setIsLoaded(true);
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    saveAs(zipBlob, "converted_files.zip");
   };
 
-  // returns
-  if (actions.length) {
-    return (
-      <div className="space-y-6">
+  useEffect(() => {
+    setIsReady(actions.every(a => a.to));
+    setHasImage(actions.some(a => a.file_type.startsWith("image")));
+    setHasVideo(actions.some(a => a.file_type.startsWith("video")));
+    setHasAudio(actions.some(a => a.file_type.startsWith("audio")));
+  }, [actions]);
 
-        {/* Selettore globale per formati - separati con UI semplificata */}
-        {actions.length > 1 && (
-          <div className="px-4 lg:px-10 flex flex-wrap gap-4">  {/* 👈 affianca i selettori */}
-
-            {/* Selettore per immagini */}
-            {actions.some(a => a.file_type.includes("image")) && (
-              <div className="flex items-center gap-4">
-                <Select
-                  onValueChange={(value) => {
-                    const updatedActions = actions.map((action) => {
-                      const isImage = action.file_type.includes("image") && extensions.image.includes(value);
-                      if (isImage) {
-                        return {
-                          ...action,
-                          to: value,
-                        };
-                      }
-                      return action;
-                    });
-                    setActions(updatedActions);
-                  }}
-                >
-                  <SelectTrigger className="w-40 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
-                    <SelectValue placeholder="Image format" />
-                  </SelectTrigger>
-                  <SelectContent className="h-fit">
-                    <div className="grid grid-cols-2 gap-2 w-fit">
-                      {extensions.image.map((ext) => (
-                        <div key={ext} className="col-span-1 text-center">
-                          <SelectItem value={ext} className="mx-auto">
-                            {ext}
-                          </SelectItem>
-                        </div>
-                      ))}
-                    </div>
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
-
-            {/* Selettore per video */}
-            {actions.some(a => a.file_type.includes("video")) && (
-              <div className="flex items-center gap-4">
-                <Select
-                  onValueChange={(value) => {
-                    const updatedActions = actions.map((action) => {
-                      const isVideo = action.file_type.includes("video") && extensions.video.includes(value);
-                      if (isVideo) {
-                        return {
-                          ...action,
-                          to: value,
-                        };
-                      }
-                      return action;
-                    });
-                    setActions(updatedActions);
-                  }}
-                >
-                  <SelectTrigger className="w-40 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
-                    <SelectValue placeholder="Video format" />
-                  </SelectTrigger>
-                  <SelectContent className="h-fit">
-                    <div className="grid grid-cols-2 gap-2 w-fit">
-                      {extensions.video.map((ext) => (
-                        <div key={ext} className="col-span-1 text-center">
-                          <SelectItem value={ext} className="mx-auto">
-                            {ext}
-                          </SelectItem>
-                        </div>
-                      ))}
-                    </div>
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
-
-            {/* Selettore per audio */}
-            {actions.some(a => a.file_type.includes("audio")) && (
-              <div className="flex items-center gap-4">
-                <Select
-                  onValueChange={(value) => {
-                    const updatedActions = actions.map((action) => {
-                      const isAudio = action.file_type.includes("audio") && extensions.audio.includes(value);
-                      if (isAudio) {
-                        return {
-                          ...action,
-                          to: value,
-                        };
-                      }
-                      return action;
-                    });
-                    setActions(updatedActions);
-                  }}
-                >
-                  <SelectTrigger className="w-40 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
-                    <SelectValue placeholder="Audio format" />
-                  </SelectTrigger>
-                  <SelectContent className="h-fit">
-                    <div className="grid grid-cols-2 gap-2 w-fit">
-                      {extensions.audio.map((ext) => (
-                        <div key={ext} className="col-span-1 text-center">
-                          <SelectItem value={ext} className="mx-auto">
-                            {ext}
-                          </SelectItem>
-                        </div>
-                      ))}
-                    </div>
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+  return (
+    <div className="space-y-6">
+      <ReactDropzone
+        onDrop={handleUpload}
+        onDragEnter={() => setIsHover(true)}
+        onDragLeave={() => setIsHover(false)}
+        accept={accepted_files}
+        onDropRejected={() => toast({
+          variant: "destructive",
+          title: "File non supportato",
+          description: "Ammessi solo immagini, video o audio.",
+        })}
+      >
+        {({ getRootProps, getInputProps }) => (
+          <div {...getRootProps()} className="bg-background h-72 border-2 border-dashed rounded-3xl flex items-center justify-center">
+            <input {...getInputProps()} />
+            <div className="text-center space-y-4 text-foreground">
+              <div className="text-5xl">{is_hover ? <LuFileSymlink /> : <FiUploadCloud />}</div>
+              <h3 className="text-2xl font-semibold">{is_hover ? t("titleHover") : t("title")}</h3>
+            </div>
           </div>
         )}
+      </ReactDropzone>
 
-        {actions.map((action: Action, i: any) => (
-          <div
-            key={i}
-            className="w-full py-4 space-y-2 lg:py-0 relative cursor-pointer rounded-xl border h-fit lg:h-20 px-4 lg:px-10 flex flex-wrap lg:flex-nowrap items-center justify-between"
-          >
-            {!is_loaded && (
-              <Skeleton className="h-full w-full -ml-10 cursor-progress absolute rounded-xl" />
-            )}
-            <div className="flex gap-4 items-center">
-              <span className="text-2xl text-orange-600">
-                {fileToIcon(action.file_type)}
-              </span>
-              <div className="flex items-center gap-1 w-96">
-                <span className="text-md font-medium overflow-x-hidden">
-                  {compressFileName(action.file_name)}
-                </span>
-                <span className="text-muted-foreground text-sm">
-                  ({bytesToSize(action.file_size)})
-                </span>
-              </div>
+      {actions.length > 0 && (
+        <div className="flex flex-wrap justify-between items-center gap-4 mt-6">
+          <h2 className="font-semibold text-lg">{t("filesToConvert")}</h2>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm text-muted-foreground">{t("applyToAll")}</span>
+
+            <Select onValueChange={applyGlobalFormat} value={globalFormat}>
+              <SelectTrigger className="w-36">
+                <SelectValue placeholder={t("formatPlaceholder")} />
+              </SelectTrigger>
+              <SelectContent>
+                {hasImage && (
+                  <>
+                    <div className="px-3 py-1 text-xs text-muted-foreground">Image</div>
+                    {extensions.image.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                  </>
+                )}
+                {hasVideo && (
+                  <>
+                    <div className="px-3 py-1 text-xs text-muted-foreground">Video</div>
+                    {extensions.video.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                  </>
+                )}
+                {hasAudio && (
+                  <>
+                    <div className="px-3 py-1 text-xs text-muted-foreground">Audio</div>
+                    {extensions.audio.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                  </>
+                )}
+              </SelectContent>
+            </Select>
+
+            <Button onClick={convert} disabled={!is_ready || is_converting}>
+              {is_converting ? <ImSpinner3 className="animate-spin mr-2" /> : null}
+              {t("convertAll")}
+            </Button>
+
+            <Button onClick={downloadAll} disabled={!is_done}>{t('downloadAll')}</Button>
+          </div>
+        </div>
+      )}
+
+      {actions.map((action, index) => (
+        <div key={index} className="flex justify-between items-center p-4 border rounded-2xl shadow-sm bg-white dark:bg-muted/20 flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl text-orange-500">{fileToIcon(action.file_type)}</span>
+            <div>
+              <p className="font-medium truncate max-w-[200px]">{compressFileName(action.file_name)}</p>
+              <p className="text-sm text-muted-foreground">{bytesToSize(action.file_size)}</p>
             </div>
+          </div>
 
+          <div className="flex items-center gap-4 flex-wrap">
             {action.is_error ? (
-              <Badge variant="destructive" className="flex gap-2">
-                <span>{t('errorConverting')}</span>
-                <BiError />
-              </Badge>
+              <Badge variant="destructive"><BiError className="mr-1" /> Errore</Badge>
             ) : action.is_converted ? (
-              <Badge variant="default" className="flex gap-2 bg-green-500">
-                <span>{t('done')}</span>
-                <MdDone />
-              </Badge>
+              <Badge className="bg-green-500 text-white"><MdDone className="mr-1" /> Fatto</Badge>
             ) : action.is_converting ? (
-              <Badge variant="default" className="flex gap-2">
-                <span>{t('converting')}</span>
-                <span className="animate-spin">
-                  <ImSpinner3 />
-                </span>
-              </Badge>
+              <Badge><ImSpinner3 className="animate-spin mr-1" /> In conversione</Badge>
             ) : (
-              <div className="text-muted-foreground text-md flex items-center gap-4">
-                <span>{t('convertTo')}</span>
-                <Select
-                  onValueChange={(value) => {
-                    if (extensions.audio.includes(value)) {
-                      setDefaultValues("audio");
-                    } else if (extensions.video.includes(value)) {
-                      setDefaultValues("video");
-                    }
-                    updateAction(action.file_name, value);
-                  }}
-                  value={action.to ?? "..."}
-                >
-                  <SelectTrigger className="w-32 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Converti in</span>
+                <Select onValueChange={(value) => updateAction(action.file_name, value)} value={action.to || ""}>
+                  <SelectTrigger className="w-32">
                     <SelectValue placeholder="..." />
                   </SelectTrigger>
-                  <SelectContent className="h-fit">
-                    {action.file_type.includes("image") && (
-                      <div className="grid grid-cols-2 gap-2 w-fit">
-                        {extensions.image.map((elt, i) => (
-                          <div key={i} className="col-span-1 text-center">
-                            <SelectItem value={elt} className="mx-auto">
-                              {elt}
-                            </SelectItem>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {action.file_type.includes("video") && (
-                      <Tabs defaultValue={defaultValues} className="w-full">
-                        <TabsList className="w-full">
-                          <TabsTrigger value="video" className="w-full">
-                            Video
-                          </TabsTrigger>
-                          <TabsTrigger value="audio" className="w-full">
-                            Audio
-                          </TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="video">
-                          <div className="grid grid-cols-3 gap-2 w-fit">
-                            {extensions.video.map((elt, i) => (
-                              <div key={i} className="col-span-1 text-center">
-                                <SelectItem value={elt} className="mx-auto">
-                                  {elt}
-                                </SelectItem>
-                              </div>
-                            ))}
-                          </div>
-                        </TabsContent>
-                        <TabsContent value="audio">
-                          <div className="grid grid-cols-3 gap-2 w-fit">
-                            {extensions.audio.map((elt, i) => (
-                              <div key={i} className="col-span-1 text-center">
-                                <SelectItem value={elt} className="mx-auto">
-                                  {elt}
-                                </SelectItem>
-                              </div>
-                            ))}
-                          </div>
-                        </TabsContent>
-                      </Tabs>
-                    )}
-                    {action.file_type.includes("audio") && (
-                      <div className="grid grid-cols-2 gap-2 w-fit">
-                        {extensions.audio.map((elt, i) => (
-                          <div key={i} className="col-span-1 text-center">
-                            <SelectItem value={elt} className="mx-auto">
-                              {elt}
-                            </SelectItem>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                  <SelectContent>
+                    {action.file_type.includes("image") && extensions.image.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                    {action.file_type.includes("video") && extensions.video.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                    {action.file_type.includes("audio") && extensions.audio.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
             )}
 
             {action.is_converted ? (
-              <Button variant="outline" onClick={() => download(action)}>
-                {t('download')}
+              <Button variant="outline" size="sm" onClick={() => download(action)}>
+                <HiOutlineDownload className="mr-2" /> Scarica
               </Button>
             ) : (
-              <span
-                onClick={() => deleteAction(action)}
-                className="cursor-pointer hover:bg-muted rounded-full h-10 w-10 flex items-center justify-center text-2xl text-foreground"
-              >
-                <MdClose />
-              </span>
-            )}
-          </div>
-        ))}
-
-        <div className="flex w-full justify-end">
-          {is_done ? (
-            <div className="space-y-4 w-fit">
-              <Button
-                size="lg"
-                className="rounded-xl font-semibold relative py-4 text-md flex gap-2 items-center w-full"
-                onClick={downloadAll}
-              >
-                {actions.length > 1 ? "Download All" : "Download"}
-                <HiOutlineDownload />
+              <Button variant="ghost" size="icon" onClick={() => deleteAction(action)}>
+                <MdClose className="text-xl" />
               </Button>
-              <Button
-                size="lg"
-                onClick={reset}
-                variant="outline"
-                className="rounded-xl"
-              >
-                {t('convertAnother')}
-              </Button>
-            </div>
-          ) : (
-            <Button
-              size="lg"
-              disabled={!is_ready || is_converting}
-              className="rounded-xl font-semibold relative py-4 text-md flex items-center w-44"
-              onClick={convert}
-            >
-              {is_converting ? (
-                <span className="animate-spin text-lg">
-                  <ImSpinner3 />
-                </span>
-              ) : (
-                <span>{t('convertNow')}</span>
-              )}
-            </Button>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <ReactDropzone
-      onDrop={handleUpload}
-      onDragEnter={handleHover}
-      onDragLeave={handleExitHover}
-      accept={accepted_files}
-      onDropRejected={() => {
-        handleExitHover();
-        toast({
-          variant: "destructive",
-          title: "Error uploading your file(s)",
-          description: "Allowed Files: Audio, Video and Images.",
-          duration: 5000,
-        });
-      }}
-      onError={() => {
-        handleExitHover();
-        toast({
-          variant: "destructive",
-          title: "Error uploading your file(s)",
-          description: "Allowed Files: Audio, Video and Images.",
-          duration: 5000,
-        });
-      }}
-    >
-      {({ getRootProps, getInputProps }) => (
-        <div
-          {...getRootProps()}
-          className=" bg-background h-72 lg:h-80 xl:h-96 rounded-3xl shadow-sm border-secondary border-2 border-dashed cursor-pointer flex items-center justify-center"
-        >
-          <input {...getInputProps()} />
-          <div className="space-y-4 text-foreground">
-            {is_hover ? (
-              <>
-                <div className="justify-center flex text-6xl">
-                  <LuFileSymlink />
-                </div>
-                <h3 className="text-center font-medium text-2xl">
-                  {t('titleHover')}
-                </h3>
-              </>
-            ) : (
-              <>
-                <div className="justify-center flex text-6xl">
-                  <FiUploadCloud />
-                </div>
-                <h3 className="text-center font-medium text-2xl">
-                  {t('title')}
-                </h3>
-              </>
             )}
           </div>
         </div>
-      )}
-    </ReactDropzone>
+      ))}
+    </div>
   );
 }
