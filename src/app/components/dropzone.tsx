@@ -50,7 +50,12 @@ export default function Dropzone() {
   const [is_ready, setIsReady] = useState(false);
   const [is_converting, setIsConverting] = useState(false);
   const [is_done, setIsDone] = useState(false);
-  const [globalFormat, setGlobalFormat] = useState<string>("");
+
+  // Formato separato per ogni tipo di file
+  const [imageFormat, setImageFormat] = useState<string>("");
+  const [videoFormat, setVideoFormat] = useState<string>("");
+  const [audioFormat, setAudioFormat] = useState<string>("");
+
   const [hasImage, setHasImage] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
   const [hasAudio, setHasAudio] = useState(false);
@@ -61,14 +66,30 @@ export default function Dropzone() {
     "video/*": extensions.video.map(ext => `.${ext}`),
   };
 
-  const applyGlobalFormat = (format: string) => {
-    setGlobalFormat(format);
+  const applyImageFormat = (format: string) => {
+    setImageFormat(format);
     setActions(actions.map(action => {
-      const isImage = action.file_type.startsWith("image") && extensions.image.includes(format);
-      const isVideo = action.file_type.startsWith("video") && extensions.video.includes(format);
-      const isAudio = action.file_type.startsWith("audio") && extensions.audio.includes(format);
+      if (action.file_type.startsWith("image")) {
+        return { ...action, to: format };
+      }
+      return action;
+    }));
+  };
 
-      if (isImage || isVideo || isAudio) {
+  const applyVideoFormat = (format: string) => {
+    setVideoFormat(format);
+    setActions(actions.map(action => {
+      if (action.file_type.startsWith("video")) {
+        return { ...action, to: format };
+      }
+      return action;
+    }));
+  };
+
+  const applyAudioFormat = (format: string) => {
+    setAudioFormat(format);
+    setActions(actions.map(action => {
+      if (action.file_type.startsWith("audio")) {
         return { ...action, to: format };
       }
       return action;
@@ -206,42 +227,56 @@ export default function Dropzone() {
         <div className="flex flex-wrap justify-between items-center gap-4 mt-6">
           <h2 className="font-semibold text-lg">{t("filesToConvert")}</h2>
 
-          <div className="flex items-center gap-2 flex-wrap">
-            {(hasImage || hasVideo || hasAudio) && actions.length > 1 && (
-              <>
-                <span className="text-sm text-muted-foreground">{t("applyToAll")}</span>
-                <Select onValueChange={applyGlobalFormat} value={globalFormat}>
-                  <SelectTrigger className="w-36">
+          <div className="flex items-center gap-4 flex-wrap">
+            {/* Selettore per immagini */}
+            {hasImage && actions.length > 1 && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Immagini:</span>
+                <Select onValueChange={applyImageFormat} value={imageFormat}>
+                  <SelectTrigger className="w-28">
                     <SelectValue placeholder={t("formatPlaceholder")} />
                   </SelectTrigger>
                   <SelectContent>
-                    {hasImage && (
-                      <>
-                        <div className="px-3 py-1 text-xs text-muted-foreground">Image</div>
-                        {extensions.image.map(ext => (
-                          <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                        ))}
-                      </>
-                    )}
-                    {hasVideo && (
-                      <>
-                        <div className="px-3 py-1 text-xs text-muted-foreground">Video</div>
-                        {extensions.video.map(ext => (
-                          <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                        ))}
-                      </>
-                    )}
-                    {hasAudio && (
-                      <>
-                        <div className="px-3 py-1 text-xs text-muted-foreground">Audio</div>
-                        {extensions.audio.map(ext => (
-                          <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                        ))}
-                      </>
-                    )}
+                    {extensions.image.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
-              </>
+              </div>
+            )}
+
+            {/* Selettore per video */}
+            {hasVideo && actions.length > 1 && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Video:</span>
+                <Select onValueChange={applyVideoFormat} value={videoFormat}>
+                  <SelectTrigger className="w-28">
+                    <SelectValue placeholder={t("formatPlaceholder")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {extensions.video.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {/* Selettore per audio */}
+            {hasAudio && actions.length > 1 && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Audio:</span>
+                <Select onValueChange={applyAudioFormat} value={audioFormat}>
+                  <SelectTrigger className="w-28">
+                    <SelectValue placeholder={t("formatPlaceholder")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {extensions.audio.map(ext => (
+                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             )}
 
             <Button onClick={convert} disabled={!is_ready || is_converting}>
