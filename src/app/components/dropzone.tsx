@@ -31,6 +31,8 @@ import fileToIcon from "@/utils/file-to-icon";
 import type { Action } from "../../../types";
 import { useTranslations } from "next-intl";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050";
+
 // ============================
 // ESTENSIONI SUPPORTATE
 // ============================
@@ -135,7 +137,7 @@ export default function Dropzone() {
         formData.append("files", action.file);
         formData.append("to", action.to!);
 
-        const res = await fetch("http://localhost:5050/convert", {
+        const res = await fetch(`${API_URL}/convert`, {
           method: "POST",
           body: formData,
         });
@@ -214,8 +216,8 @@ export default function Dropzone() {
         {({ getRootProps, getInputProps }) => (
           <div {...getRootProps()} className="bg-background h-72 border-2 border-dashed rounded-3xl flex items-center justify-center">
             <input {...getInputProps()} />
-            <div className="text-center space-y-4 text-foreground">
-              <div className="text-5xl">{is_hover ? <LuFileSymlink /> : <FiUploadCloud />}</div>
+            <div className="text-center flex flex-col items-center justify-center">
+              <div className="text-5xl mb-4">{is_hover ? <LuFileSymlink /> : <FiUploadCloud />}</div>
               <h3 className="text-2xl font-semibold">{is_hover ? t("titleHover") : t("title")}</h3>
             </div>
           </div>
@@ -224,60 +226,62 @@ export default function Dropzone() {
 
       {/* ACTION BAR SEMPRE VISIBILE */}
       {actions.length > 0 && (
-        <div className="flex flex-wrap justify-between items-center gap-4 mt-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-6">
           <h2 className="font-semibold text-lg">{t("filesToConvert")}</h2>
 
-          <div className="flex items-center gap-4 flex-wrap">
-            {/* Selettore per immagini */}
-            {hasImage && actions.length > 1 && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Immagini:</span>
-                <Select onValueChange={applyImageFormat} value={imageFormat}>
-                  <SelectTrigger className="w-28">
-                    <SelectValue placeholder={t("formatPlaceholder")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {extensions.image.map(ext => (
-                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap justify-center items-center gap-4">
+              {/* Selettore per immagini */}
+              {hasImage && actions.length > 1 && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Immagini:</span>
+                  <Select onValueChange={applyImageFormat} value={imageFormat}>
+                    <SelectTrigger className="w-28">
+                      <SelectValue placeholder={t("formatPlaceholder")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {extensions.image.map(ext => (
+                        <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
-            {/* Selettore per video */}
-            {hasVideo && actions.length > 1 && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Video:</span>
-                <Select onValueChange={applyVideoFormat} value={videoFormat}>
-                  <SelectTrigger className="w-28">
-                    <SelectValue placeholder={t("formatPlaceholder")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {extensions.video.map(ext => (
-                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+              {/* Selettore per video */}
+              {hasVideo && actions.length > 1 && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Video:</span>
+                  <Select onValueChange={applyVideoFormat} value={videoFormat}>
+                    <SelectTrigger className="w-28">
+                      <SelectValue placeholder={t("formatPlaceholder")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {extensions.video.map(ext => (
+                        <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
-            {/* Selettore per audio */}
-            {hasAudio && actions.length > 1 && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Audio:</span>
-                <Select onValueChange={applyAudioFormat} value={audioFormat}>
-                  <SelectTrigger className="w-28">
-                    <SelectValue placeholder={t("formatPlaceholder")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {extensions.audio.map(ext => (
-                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+              {/* Selettore per audio */}
+              {hasAudio && actions.length > 1 && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Audio:</span>
+                  <Select onValueChange={applyAudioFormat} value={audioFormat}>
+                    <SelectTrigger className="w-28">
+                      <SelectValue placeholder={t("formatPlaceholder")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {extensions.audio.map(ext => (
+                        <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            </div>
 
             <Button onClick={convert} disabled={!is_ready || is_converting}>
               {is_converting ? <ImSpinner3 className="animate-spin mr-2" /> : null}
