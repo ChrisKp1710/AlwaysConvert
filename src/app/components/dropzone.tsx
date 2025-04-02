@@ -1,15 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useState, useEffect } from "react";
-import ReactDropzone from "react-dropzone";
+// ============================
+// IMPORTS
+// ============================
 import { FiUploadCloud } from "react-icons/fi";
 import { LuFileSymlink } from "react-icons/lu";
 import { MdClose, MdDone } from "react-icons/md";
 import { HiOutlineDownload } from "react-icons/hi";
 import { BiError } from "react-icons/bi";
 import { ImSpinner3 } from "react-icons/im";
-
+import ReactDropzone from "react-dropzone";
+import { useState, useEffect } from "react";
 import { useToast } from "./ui/use-toast";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 import {
   Select,
   SelectContent,
@@ -19,17 +25,15 @@ import {
 } from "./ui/select";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-
 import bytesToSize from "@/utils/bytes-to-size";
 import compressFileName from "@/utils/compress-file-name";
 import fileToIcon from "@/utils/file-to-icon";
-
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
-import { useTranslations } from "next-intl";
 import type { Action } from "../../../types";
+import { useTranslations } from "next-intl";
 
-// Estensioni supportate
+// ============================
+// ESTENSIONI SUPPORTATE
+// ============================
 const extensions = {
   image: ["jpg", "jpeg", "png", "gif", "bmp", "webp", "ico", "tif", "tiff", "svg", "raw", "tga"],
   video: ["mp4", "m4v", "mp4v", "3gp", "3g2", "avi", "mov", "wmv", "mkv", "flv", "ogv", "webm", "h264", "264", "hevc", "265"],
@@ -47,7 +51,6 @@ export default function Dropzone() {
   const [is_converting, setIsConverting] = useState(false);
   const [is_done, setIsDone] = useState(false);
   const [globalFormat, setGlobalFormat] = useState<string>("");
-
   const [hasImage, setHasImage] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
   const [hasAudio, setHasAudio] = useState(false);
@@ -58,7 +61,6 @@ export default function Dropzone() {
     "video/*": extensions.video.map(ext => `.${ext}`),
   };
 
-  // Applica formato globale solo ai file compatibili
   const applyGlobalFormat = (format: string) => {
     setGlobalFormat(format);
     setActions(actions.map(action => {
@@ -78,7 +80,7 @@ export default function Dropzone() {
     const tmp: Action[] = data.map(file => ({
       file_name: file.name,
       file_size: file.size,
-      from: file.name.split('.').pop() || "",
+      from: file.name.split(".").pop() || "",
       to: null,
       file_type: file.type,
       file,
@@ -166,13 +168,17 @@ export default function Dropzone() {
 
   useEffect(() => {
     setIsReady(actions.every(a => a.to));
-    setHasImage(actions.some(a => a.file_type.startsWith("image")));
-    setHasVideo(actions.some(a => a.file_type.startsWith("video")));
-    setHasAudio(actions.some(a => a.file_type.startsWith("audio")));
+    const imageFiles = actions.filter(a => a.file_type.startsWith("image"));
+    const videoFiles = actions.filter(a => a.file_type.startsWith("video"));
+    const audioFiles = actions.filter(a => a.file_type.startsWith("audio"));
+    setHasImage(imageFiles.length >= 2);
+    setHasVideo(videoFiles.length >= 2);
+    setHasAudio(audioFiles.length >= 2);
   }, [actions]);
 
   return (
     <div className="space-y-6">
+      {/* DROPZONE UPLOAD AREA */}
       <ReactDropzone
         onDrop={handleUpload}
         onDragEnter={() => setIsHover(true)}
@@ -195,55 +201,60 @@ export default function Dropzone() {
         )}
       </ReactDropzone>
 
+      {/* ACTION BAR SEMPRE VISIBILE */}
       {actions.length > 0 && (
         <div className="flex flex-wrap justify-between items-center gap-4 mt-6">
           <h2 className="font-semibold text-lg">{t("filesToConvert")}</h2>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-sm text-muted-foreground">{t("applyToAll")}</span>
-
-            <Select onValueChange={applyGlobalFormat} value={globalFormat}>
-              <SelectTrigger className="w-36">
-                <SelectValue placeholder={t("formatPlaceholder")} />
-              </SelectTrigger>
-              <SelectContent>
-                {hasImage && (
-                  <>
-                    <div className="px-3 py-1 text-xs text-muted-foreground">Image</div>
-                    {extensions.image.map(ext => (
-                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                    ))}
-                  </>
-                )}
-                {hasVideo && (
-                  <>
-                    <div className="px-3 py-1 text-xs text-muted-foreground">Video</div>
-                    {extensions.video.map(ext => (
-                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                    ))}
-                  </>
-                )}
-                {hasAudio && (
-                  <>
-                    <div className="px-3 py-1 text-xs text-muted-foreground">Audio</div>
-                    {extensions.audio.map(ext => (
-                      <SelectItem key={ext} value={ext}>{ext}</SelectItem>
-                    ))}
-                  </>
-                )}
-              </SelectContent>
-            </Select>
+            {(hasImage || hasVideo || hasAudio) && actions.length > 1 && (
+              <>
+                <span className="text-sm text-muted-foreground">{t("applyToAll")}</span>
+                <Select onValueChange={applyGlobalFormat} value={globalFormat}>
+                  <SelectTrigger className="w-36">
+                    <SelectValue placeholder={t("formatPlaceholder")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {hasImage && (
+                      <>
+                        <div className="px-3 py-1 text-xs text-muted-foreground">Image</div>
+                        {extensions.image.map(ext => (
+                          <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                        ))}
+                      </>
+                    )}
+                    {hasVideo && (
+                      <>
+                        <div className="px-3 py-1 text-xs text-muted-foreground">Video</div>
+                        {extensions.video.map(ext => (
+                          <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                        ))}
+                      </>
+                    )}
+                    {hasAudio && (
+                      <>
+                        <div className="px-3 py-1 text-xs text-muted-foreground">Audio</div>
+                        {extensions.audio.map(ext => (
+                          <SelectItem key={ext} value={ext}>{ext}</SelectItem>
+                        ))}
+                      </>
+                    )}
+                  </SelectContent>
+                </Select>
+              </>
+            )}
 
             <Button onClick={convert} disabled={!is_ready || is_converting}>
               {is_converting ? <ImSpinner3 className="animate-spin mr-2" /> : null}
               {t("convertAll")}
             </Button>
 
-            <Button onClick={downloadAll} disabled={!is_done}>{t('downloadAll')}</Button>
+            <Button onClick={downloadAll} disabled={!is_done}>{t("downloadAll")}</Button>
           </div>
         </div>
       )}
 
+      {/* FILES PREVIEW LIST */}
       {actions.map((action, index) => (
         <div key={index} className="flex justify-between items-center p-4 border rounded-2xl shadow-sm bg-white dark:bg-muted/20 flex-wrap gap-4">
           <div className="flex items-center gap-3">
