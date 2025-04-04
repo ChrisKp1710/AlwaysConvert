@@ -120,6 +120,13 @@ const Navbar: React.FC = () => {
                 </Link>
               </SheetTrigger>
               <SheetTrigger asChild>
+                <Link href="/convert">
+                  <Button variant="link" className="w-full justify-start">
+                    Convert
+                  </Button>
+                </Link>
+              </SheetTrigger>
+              <SheetTrigger asChild>
                 <Link href="/about">
                   <Button variant="link" className="w-full justify-start">
                     About

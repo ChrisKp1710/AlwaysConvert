@@ -143,45 +143,153 @@
       "button": "Inizia a Convertire"
     }
   },
-  "privacyPolicy": {
-    "effectiveDate": "Data di Efficacia: {date}",
-    "intro": "AlwaysConvert si impegna a proteggere la tua privacy. Questa politica spiega chiaramente e trasparentemente le nostre pratiche di gestione dei dati.",
-    "sections": [
-      {
-        "title": "Informazioni che Raccogliamo",
-        "content": "Raccogliamo informazioni limitate tramite Google Analytics, tra cui pagine visitate, indirizzi IP, tipi di browser, tipi di dispositivi e URL di riferimento, per migliorare la funzionalità e i contenuti."
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Come proteggiamo i tuoi dati e rispettiamo la tua privacy",
+
+    "commitment": {
+      "title": "Il Nostro Impegno sulla Privacy",
+      "description": "In AlwaysConvert, prendiamo la tua privacy estremamente sul serio. Il nostro servizio è progettato con la privacy come principio fondamentale, non come un ripensamento.",
+      "noCollection": {
+        "title": "Nessuna Raccolta Dati",
+        "desc": "Non raccogliamo, memorizziamo o tracciamo informazioni personali o media caricati."
       },
-      {
-        "title": "Come Utilizziamo le Tue Informazioni",
-        "content": "Utilizziamo i dati raccolti esclusivamente per analizzare il comportamento degli utenti e migliorare le prestazioni del sito web. Non vendiamo, affittiamo o condividiamo queste informazioni con terzi."
+      "noUpload": {
+        "title": "Nessun Upload sui Server",
+        "desc": "I tuoi file rimangono sul tuo dispositivo e vengono elaborati interamente nel tuo browser."
       },
-      {
-        "title": "Cookie e Tecnologie di Tracciamento",
-        "content": "Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sul sito. Puoi controllare le preferenze dei cookie tramite le impostazioni del tuo browser, anche se disabilitare i cookie potrebbe influire sulla funzionalità."
-      },
-      {
-        "title": "Sicurezza dei Dati",
-        "content": "Adottiamo misure di sicurezza ragionevoli per proteggere i tuoi dati da accessi non autorizzati. Tuttavia, nessun metodo di trasmissione o archiviazione dei dati è completamente sicuro."
-      },
-      {
-        "title": "Link a Siti di Terze Parti",
-        "content": "Il nostro sito potrebbe contenere link a siti esterni. Non siamo responsabili delle pratiche di privacy di tali siti. Ti consigliamo di esaminare le loro politiche sulla privacy."
-      },
-      {
-        "title": "Privacy dei Bambini",
-        "content": "Il nostro sito non è destinato ai bambini sotto i 13 anni e non raccogliamo consapevolmente i loro dati personali. Se sospetti che abbiamo raccolto dati da un minorenne, contattaci immediatamente."
-      },
-      {
-        "title": "Modifiche a Questa Politica sulla Privacy",
-        "content": "Possiamo aggiornare questa Politica sulla Privacy senza preavviso. Le modifiche sono efficaci immediatamente dopo la pubblicazione. Controlla regolarmente per eventuali aggiornamenti."
-      },
-      {
-        "title": "Contattaci",
-        "content": "Per domande riguardo questa Politica sulla Privacy, contattaci a Chriskp1710@gmail.com."
+      "noTracking": {
+        "title": "Nessun Tracciamento",
+        "desc": "Non utilizziamo cookie o tecnologie di tracciamento per monitorare la tua attività."
       }
-    ],
-    "consent": "Utilizzando AlwaysConvert, acconsenti a questa Politica sulla Privacy. Interrompi l'uso del sito se non sei d'accordo con questi termini."
+    },
+
+    "howWorks": {
+      "title": "Come Funziona il Nostro Servizio",
+      "description": "Il nostro servizio di conversione media opera interamente all'interno del tuo browser web:",
+      "points": [
+        "Quando selezioni un file, viene caricato nella memoria del tuo browser.",
+        "La conversione viene eseguita utilizzando JavaScript direttamente nel tuo browser.",
+        "Il file convertito viene generato nel tuo browser e offerto per il download.",
+        "In nessun momento il tuo file o qualsiasi informazione su di esso viene trasmessa ai nostri server o a terze parti."
+      ]
+    },
+
+    "adsManagement": {
+      "title": "Gestione degli Annunci",
+      "adSense": {
+        "title": "Utilizzo di Google AdSense",
+        "description": "Utilizziamo Google AdSense per supportare i nostri servizi gratuiti. Ecco come funziona:"
+      },
+      "section1": {
+        "title": "1. Posizionamento Automatico",
+        "points": [
+          "Google inserirà annunci automaticamente nei punti migliori",
+          "Utilizzerà algoritmi per massimizzare l'engagement",
+          "Posizionerà annunci dove sono più probabili i click"
+        ]
+      },
+      "section2": {
+        "title": "2. Criteri di Posizionamento",
+        "points": [
+          "Spazi vuoti nei contenuti",
+          "Dopo paragrafi",
+          "Bordi laterali",
+          "Footer delle pagine",
+          "Tra sezioni di contenuto"
+        ]
+      },
+      "section3": {
+        "title": "3. Tipi di Annunci",
+        "points": [
+          "Testuali",
+          "Grafici",
+          "Responsive (adattabili a dispositivi)",
+          "Contestuali (relativi al contenuto)"
+        ]
+      },
+      "section4": {
+        "title": "4. Personalizzazione",
+        "points": [
+          "Possiamo impostare alcune regole base",
+          "Definire zone dove NON vogliamo annunci",
+          "Controllare densità e dimensioni"
+        ]
+      },
+      "section5": {
+        "title": "5. Guadagno",
+        "points": [
+          "Pagamento per click (CPC)",
+          "Pagamento per visualizzazioni (CPM)",
+          "Guadagno medio: 0.20€ - 2€ per 1000 visualizzazioni"
+        ]
+      }
+    },
+
+    "technical": {
+      "title": "Informazioni Tecniche",
+      "description": "Per trasparenza, ecco alcune informazioni tecniche su come opera il nostro servizio:",
+      "points": [
+        "Utilizziamo l'API File HTML5 per gestire i file nel browser.",
+        "Le conversioni multimediali utilizzano le capacità integrate del canvas del browser e i Web Workers per l'elaborazione.",
+        "Per le conversioni video, utilizziamo librerie lato client che funzionano interamente nel tuo browser.",
+        "Il nostro sito web viene servito tramite HTTPS per garantire che la tua connessione al nostro servizio sia sicura."
+      ]
+    },
+
+    "contact": {
+      "title": "Informazioni di Contatto",
+      "description": "Se hai domande o dubbi sulla nostra politica sulla privacy o su come funziona il nostro servizio, contattaci a:",
+      "email": "privacy@alwaysconvert.app"
+    },
+
+    "updates": {
+      "title": "Aggiornamenti della Privacy Policy",
+      "description": "Questa privacy policy è stata aggiornata il {date}. Potremmo occasionalmente aggiornare questa policy per riflettere i cambiamenti nelle nostre pratiche o per altri motivi operativi, legali o normativi."
+    },
+
+    "standardPolicy": {
+      "title": "Dettagli Legali della Privacy Policy",
+      "effectiveDate": "Data di Efficacia: {date}",
+      "intro": "AlwaysConvert si impegna a proteggere la tua privacy. Questa politica spiega chiaramente e trasparentemente le nostre pratiche di gestione dei dati.",
+      "sections": [
+        {
+          "title": "Informazioni che Raccogliamo",
+          "content": "Raccogliamo informazioni limitate tramite Google Analytics, tra cui pagine visitate, indirizzi IP, tipi di browser, tipi di dispositivi e URL di riferimento, per migliorare la funzionalità e i contenuti."
+        },
+        {
+          "title": "Come Utilizziamo le Tue Informazioni",
+          "content": "Utilizziamo i dati raccolti esclusivamente per analizzare il comportamento degli utenti e migliorare le prestazioni del sito web. Non vendiamo, affittiamo o condividiamo queste informazioni con terzi."
+        },
+        {
+          "title": "Cookie e Tecnologie di Tracciamento",
+          "content": "Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sul sito. Puoi controllare le preferenze dei cookie tramite le impostazioni del tuo browser, anche se disabilitare i cookie potrebbe influire sulla funzionalità."
+        },
+        {
+          "title": "Sicurezza dei Dati",
+          "content": "Adottiamo misure di sicurezza ragionevoli per proteggere i tuoi dati da accessi non autorizzati. Tuttavia, nessun metodo di trasmissione o archiviazione dei dati è completamente sicuro."
+        },
+        {
+          "title": "Link a Siti di Terze Parti",
+          "content": "Il nostro sito potrebbe contenere link a siti esterni. Non siamo responsabili delle pratiche di privacy di tali siti. Ti consigliamo di esaminare le loro politiche sulla privacy."
+        },
+        {
+          "title": "Privacy dei Bambini",
+          "content": "Il nostro sito non è destinato ai bambini sotto i 13 anni e non raccogliamo consapevolmente i loro dati personali. Se sospetti che abbiamo raccolto dati da un minorenne, contattaci immediatamente."
+        },
+        {
+          "title": "Modifiche a Questa Politica sulla Privacy",
+          "content": "Possiamo aggiornare questa Politica sulla Privacy senza preavviso. Le modifiche sono efficaci immediatamente dopo la pubblicazione. Controlla regolarmente per eventuali aggiornamenti."
+        },
+        {
+          "title": "Contattaci",
+          "content": "Per domande riguardo questa Politica sulla Privacy, contattaci a privacy@alwaysconvert.app."
+        }
+      ],
+      "consent": "Utilizzando AlwaysConvert, acconsenti a questa Politica sulla Privacy. Interrompi l'uso del sito se non sei d'accordo con questi termini."
+    }
   },
+
   "dropzone": {
     "title": "Clicca o trascina qui i tuoi file",
     "titleHover": "Sì, proprio lì",
