@@ -1,7 +1,33 @@
 {
   "home": {
-    "title": "Convertitore di File Illimitato Gratuito",
-    "description": "Libera la tua creatività con AlwaysConvert – lo strumento online definitivo per convertire gratuitamente e senza limiti file multimediali. Trasforma immagini, audio e video con facilità, senza restrizioni. Inizia subito a convertire e porta i tuoi contenuti a un livello superiore!"
+    "hero": {
+      "title1": "Convert Media Files",
+      "title2": "Securely",
+      "title3": "in Your Browser",
+      "subtitle": "Transform your images and videos to different formats easily. No uploads needed - all processing happens right in your browser.",
+      "cta": "Start Converting",
+      "learnMore": "Learn More"
+    },
+    "features": {
+      "title": "Why Choose Our Converter",
+      "security": {
+        "title": "100% Secure",
+        "desc": "All processing happens locally in your browser. Your files never leave your device."
+      },
+      "images": {
+        "title": "Image Formats",
+        "desc": "Convert between PNG, JPG, WebP, and GIF easily."
+      },
+      "videos": {
+        "title": "Video Formats",
+        "desc": "Convert videos to MP4, WebM, AVI and more."
+      }
+    },
+    "cta": {
+      "title": "Ready to Convert Your Files?",
+      "desc": "Try our free browser-based converter now. No sign-up required.",
+      "button": "Go to Converter"
+    }
   },
 
   "about": {

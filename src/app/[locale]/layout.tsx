@@ -124,7 +124,7 @@ export default async function RootLayout(
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Navbar />
             <Toaster />
-            <main className="container flex-grow mx-auto px-4 pt-32 lg:pt-36 2xl:pt-44 max-w-4xl lg:max-w-6xl 2xl:max-w-7xl">
+            <main className="flex-grow w-full px-4 pt-28 md:pt-36 2xl:pt-24">
               {children}
             </main>
             <Footer />
