@@ -31,8 +31,117 @@
         "button": "Aller au Convertisseur"
       }
     },
-
     "about": {
+      "title": "Qui Sommes-Nous: AlwaysConvert",
+      "subtitle": "Conversion de Fichiers Simple et Transparente",
+      "mission": {
+        "title": "Notre Mission",
+        "description": "AlwaysConvert est né de l'idée de rendre la conversion de fichiers un processus simple, rapide et accessible à tous. Notre objectif est d'éliminer les barrières techniques qui rendent complexe la modification des formats de fichiers."
+      },
+      "security": {
+        "title": "Sécurité et Confidentialité Avant Tout",
+        "files": {
+          "title": "Protection de Vos Fichiers",
+          "noSignup": {
+            "title": "Aucune Inscription Requise",
+            "desc": "Convertissez vos fichiers sans créer de compte"
+          },
+          "delete": {
+            "title": "Suppression Immédiate",
+            "desc": "Les fichiers sont automatiquement supprimés après la conversion"
+          },
+          "secure": {
+            "title": "Connexion Sécurisée",
+            "desc": "Nous utilisons des protocoles de cryptage de pointe"
+          }
+        }
+      },
+      "ads": {
+        "title": "Gestion Publicitaire Éthique",
+        "description": "Nous utilisons Google AdSense pour soutenir notre service gratuit. Voici ce que cela signifie pour vous :",
+        "transparency": {
+          "title": "Transparence Publicitaire",
+          "safe": {
+            "title": "Annonces Non Intrusives",
+            "desc": "Positionnées avec soin, sans perturber l'expérience"
+          },
+          "relevant": {
+            "title": "Contenus Pertinents",
+            "desc": "Annonces liées à vos centres d'intérêt"
+          },
+          "noTrack": {
+            "title": "Aucun Suivi Invasif",
+            "desc": "Nous respectons votre vie privée"
+          }
+        },
+        "howWorks": {
+          "title": "Comment Fonctionnent les Annonces",
+          "auto": "Les annonces sont générées automatiquement par Google",
+          "spots": "Elles apparaissent dans des espaces prédéfinis du site",
+          "clicks": "Chaque clic soutient le développement d'AlwaysConvert"
+        }
+      },
+      "transparency": {
+        "title": "Engagement pour la Transparence",
+        "openSource": {
+          "title": "Open Source",
+          "desc": "Notre code est disponible publiquement"
+        },
+        "passion": {
+          "title": "Développé avec Passion",
+          "desc": "Par des développeurs pour les utilisateurs"
+        },
+        "free": {
+          "title": "Gratuit pour Toujours",
+          "desc": "Aucun coût caché"
+        }
+      },
+      "tech": {
+        "title": "Technologies Utilisées",
+        "frontend": {
+          "title": "Frontend"
+        },
+        "conversion": {
+          "title": "Conversion de Fichiers"
+        },
+        "hosting": {
+          "title": "Hébergement"
+        },
+        "security": {
+          "title": "Sécurité"
+        },
+        "hosting_desc": "Services cloud de pointe",
+        "security_desc": "Protocoles de cryptage aux normes industrielles"
+      },
+      "faq": {
+        "title": "Questions Fréquentes",
+        "q1": {
+          "title": "Mes Fichiers Sont-ils en Sécurité ?",
+          "desc": "Absolument. Chaque fichier est :",
+          "points": [
+            "Traité immédiatement",
+            "Supprimé après la conversion",
+            "Jamais stocké ou partagé"
+          ]
+        },
+        "q2": {
+          "title": "Puis-je Désactiver les Annonces ?",
+          "desc": "Nous comprenons que les publicités peuvent être gênantes. Nous travaillons sur :",
+          "points": [
+            "Option de soutien par don",
+            "Version sans publicité pour les utilisateurs exigeants"
+          ]
+        }
+      },
+      "contact": {
+        "title": "Nous Contacter",
+        "desc": "Des questions ? Des suggestions ? Nous sommes toujours ouverts au dialogue.",
+        "github": "Contribuez au projet"
+      },
+      "cta": {
+        "title": "AlwaysConvert : Conversion de Fichiers Simple, Rapide, Sécurisée.",
+        "button": "Commencer à Convertir"
+      },
       "cards": [
         {
           "title": "🖼️ Conversion d'images",
@@ -72,6 +181,152 @@
         }
       ]
     },
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "subtitle": "Comment nous protégeons vos données et respectons votre vie privée",
+
+      "commitment": {
+        "title": "Notre Engagement pour la Confidentialité",
+        "description": "Chez AlwaysConvert, nous prenons votre vie privée très au sérieux. Notre service est conçu avec la confidentialité comme principe fondamental, pas comme une réflexion après-coup.",
+        "noCollection": {
+          "title": "Aucune Collecte de Données",
+          "desc": "Nous ne collectons, ne stockons ni ne suivons les informations personnelles ou les médias téléchargés."
+        },
+        "noUpload": {
+          "title": "Aucun Téléchargement sur Serveur",
+          "desc": "Vos fichiers restent sur votre appareil et sont traités entièrement dans votre navigateur."
+        },
+        "noTracking": {
+          "title": "Aucun Suivi",
+          "desc": "Nous n'utilisons pas de cookies ou de technologies de suivi pour surveiller votre activité."
+        }
+      },
+
+      "howWorks": {
+        "title": "Comment Fonctionne Notre Service",
+        "description": "Notre service de conversion multimédia fonctionne entièrement dans votre navigateur web :",
+        "points": [
+          "Lorsque vous sélectionnez un fichier, il est chargé dans la mémoire de votre navigateur.",
+          "La conversion est effectuée en utilisant JavaScript directement dans votre navigateur.",
+          "Le fichier converti est généré dans votre navigateur et proposé au téléchargement.",
+          "À aucun moment votre fichier ou toute information le concernant n'est transmis à nos serveurs ou à des tiers."
+        ]
+      },
+
+      "adsManagement": {
+        "title": "Gestion des Publicités",
+        "adSense": {
+          "title": "Utilisation de Google AdSense",
+          "description": "Nous utilisons Google AdSense pour soutenir nos services gratuits. Voici comment cela fonctionne :"
+        },
+        "section1": {
+          "title": "1. Placement Automatique",
+          "points": [
+            "Google insère automatiquement des annonces aux points optimaux",
+            "Il utilise des algorithmes pour maximiser l'engagement",
+            "Il place des annonces là où les clics sont les plus probables"
+          ]
+        },
+        "section2": {
+          "title": "2. Critères de Placement",
+          "points": [
+            "Espaces vides dans le contenu",
+            "Après les paragraphes",
+            "Marges latérales",
+            "Pieds de page",
+            "Entre les sections de contenu"
+          ]
+        },
+        "section3": {
+          "title": "3. Types d'Annonces",
+          "points": [
+            "Textuelles",
+            "Graphiques",
+            "Responsives (adaptables aux appareils)",
+            "Contextuelles (liées au contenu)"
+          ]
+        },
+        "section4": {
+          "title": "4. Personnalisation",
+          "points": [
+            "Nous pouvons définir quelques règles de base",
+            "Définir des zones où nous NE voulons PAS d'annonces",
+            "Contrôler la densité et les dimensions"
+          ]
+        },
+        "section5": {
+          "title": "5. Revenus",
+          "points": [
+            "Paiement par clic (CPC)",
+            "Paiement par impression (CPM)",
+            "Revenus moyens : 0,20€ - 2€ pour 1000 vues"
+          ]
+        }
+      },
+
+      "technical": {
+        "title": "Informations Techniques",
+        "description": "Par souci de transparence, voici quelques informations techniques sur le fonctionnement de notre service :",
+        "points": [
+          "Nous utilisons l'API File HTML5 pour gérer les fichiers dans le navigateur.",
+          "Les conversions multimédias utilisent les capacités intégrées du canvas du navigateur et les Web Workers pour le traitement.",
+          "Pour les conversions vidéo, nous utilisons des bibliothèques côté client qui fonctionnent entièrement dans votre navigateur.",
+          "Notre site web est servi via HTTPS pour garantir que votre connexion à notre service est sécurisée."
+        ]
+      },
+
+      "contact": {
+        "title": "Informations de Contact",
+        "description": "Si vous avez des questions ou des préoccupations concernant notre politique de confidentialité ou le fonctionnement de notre service, contactez-nous à :",
+        "email": "privacy@alwaysconvert.app"
+      },
+
+      "updates": {
+        "title": "Mises à Jour de la Politique de Confidentialité",
+        "description": "Cette politique de confidentialité a été mise à jour le {date}. Nous pouvons occasionnellement mettre à jour cette politique pour refléter les changements dans nos pratiques ou pour d'autres raisons opérationnelles, légales ou réglementaires."
+      },
+
+      "standardPolicy": {
+        "title": "Détails Juridiques de la Politique de Confidentialité",
+        "effectiveDate": "Date d'entrée en vigueur : {date}",
+        "intro": "AlwaysConvert s'engage à protéger votre vie privée. Cette politique explique clairement et en toute transparence nos pratiques en matière de gestion des données.",
+        "sections": [
+          {
+            "title": "Informations que nous recueillons",
+            "content": "Nous recueillons des informations limitées via Google Analytics, telles que les pages visitées, les adresses IP, les types de navigateurs, les types d'appareils et les URL de référence, afin d'améliorer les fonctionnalités et le contenu."
+          },
+          {
+            "title": "Comment nous utilisons vos informations",
+            "content": "Nous utilisons les données collectées uniquement pour analyser le comportement des utilisateurs et améliorer les performances du site web. Nous ne vendons, ne louons ni ne partageons ces informations avec des tiers."
+          },
+          {
+            "title": "Cookies et technologies de suivi",
+            "content": "Nous utilisons des cookies et des technologies similaires pour améliorer votre expérience sur le site. Vous pouvez contrôler vos préférences de cookies via les paramètres de votre navigateur, bien que leur désactivation puisse affecter certaines fonctionnalités."
+          },
+          {
+            "title": "Sécurité des données",
+            "content": "Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos données contre tout accès non autorisé. Cependant, aucun mode de transmission ou de stockage des données n'est totalement sécurisé."
+          },
+          {
+            "title": "Liens vers des sites tiers",
+            "content": "Notre site peut contenir des liens vers des sites externes. Nous ne sommes pas responsables des pratiques de confidentialité de ces sites. Nous vous recommandons de consulter leurs politiques de confidentialité."
+          },
+          {
+            "title": "Confidentialité des enfants",
+            "content": "Notre site n'est pas destiné aux enfants de moins de 13 ans et nous ne recueillons pas sciemment leurs données personnelles. Si vous pensez que nous avons collecté des données sur un mineur, veuillez nous contacter immédiatement."
+          },
+          {
+            "title": "Modifications de cette politique de confidentialité",
+            "content": "Nous pouvons mettre à jour cette politique de confidentialité sans préavis. Les modifications prennent effet immédiatement après leur publication. Veuillez consulter régulièrement cette page pour les mises à jour."
+          },
+          {
+            "title": "Contactez-nous",
+            "content": "Pour toute question concernant cette politique de confidentialité, veuillez nous contacter à privacy@alwaysconvert.app."
+          }
+        ],
+        "consent": "En utilisant AlwaysConvert, vous acceptez cette politique de confidentialité. Veuillez cesser d'utiliser le site si vous n'êtes pas d'accord avec ces conditions."
+      }
+    },
 
     "privacyPolicy": {
       "effectiveDate": "Date d'entrée en vigueur : {date}",
@@ -103,7 +358,7 @@
         },
         {
           "title": "Modifications de cette politique de confidentialité",
-          "content": "Nous pouvons mettre à jour cette politique de confidentialité sans préavis. Les modifications prennent effet immédiatement après leur publication. Veuillez consulter régolarment cette page pour les mises à jour."
+          "content": "Nous pouvons mettre à jour cette politique de confidentialité sans préavis. Les modifications prennent effet immédiatement après leur publication. Veuillez consulter régulièrement cette page pour les mises à jour."
         },
         {
           "title": "Contactez-nous",
