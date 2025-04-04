@@ -38,6 +38,11 @@ const Navbar: React.FC = () => {
         <Button variant="ghost" className="font-semibold text-md">
           <Link href="/">Home</Link>
         </Button>
+        <Link href="/convert">
+          <Button variant="ghost" className="font-semibold text-md">
+            Convert
+          </Button>
+        </Link>
         <Link href="/about">
           <Button variant="ghost" className="font-semibold text-md">
             About

@@ -69,7 +69,7 @@ export default function Home() {
           <p className="text-muted-foreground mb-8">
             {t("cta.desc")}
           </p>
-          <Link href="/converter">
+          <Link href="/convert">
             <Button size="lg">{t("cta.button")}</Button>
           </Link>
         </div>

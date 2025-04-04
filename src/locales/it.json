@@ -1,76 +1,148 @@
 {
   "home": {
+    "title": "Convertitore di file gratuito e illimitato",
+    "description": "Libera la tua creatività con AlwaysConvert – lo strumento online definitivo per convertire file multimediali gratuitamente e senza limiti. Trasforma immagini, audio e video con facilità, senza restrizioni. Inizia a convertire ora ed eleva i tuoi contenuti a un nuovo livello!",
     "hero": {
-      "title1": "Convert Media Files",
-      "title2": "Securely",
-      "title3": "in Your Browser",
-      "subtitle": "Transform your images and videos to different formats easily. No uploads needed - all processing happens right in your browser.",
-      "cta": "Start Converting",
-      "learnMore": "Learn More"
+      "title1": "Converti File Multimediali",
+      "title2": "In Sicurezza",
+      "title3": "Nel Tuo Browser",
+      "subtitle": "Trasforma facilmente le tue immagini e i tuoi video in diversi formati. Nessun caricamento necessario - tutte le elaborazioni avvengono direttamente nel tuo browser.",
+      "cta": "Inizia a Convertire",
+      "learnMore": "Scopri di Più"
     },
     "features": {
-      "title": "Why Choose Our Converter",
+      "title": "Perché Scegliere il Nostro Convertitore",
       "security": {
-        "title": "100% Secure",
-        "desc": "All processing happens locally in your browser. Your files never leave your device."
+        "title": "100% Sicuro",
+        "desc": "Tutte le elaborazioni avvengono localmente nel tuo browser. I tuoi file non lasciano mai il tuo dispositivo."
       },
       "images": {
-        "title": "Image Formats",
-        "desc": "Convert between PNG, JPG, WebP, and GIF easily."
+        "title": "Formati Immagine",
+        "desc": "Converti facilmente tra PNG, JPG, WebP e GIF."
       },
       "videos": {
-        "title": "Video Formats",
-        "desc": "Convert videos to MP4, WebM, AVI and more."
+        "title": "Formati Video",
+        "desc": "Converti video in MP4, WebM, AVI e altro."
       }
     },
     "cta": {
-      "title": "Ready to Convert Your Files?",
-      "desc": "Try our free browser-based converter now. No sign-up required.",
-      "button": "Go to Converter"
+      "title": "Pronto a Convertire i Tuoi File?",
+      "desc": "Prova ora il nostro convertitore gratuito basato su browser. Nessuna registrazione richiesta.",
+      "button": "Vai al Convertitore"
     }
   },
-
   "about": {
-    "cards": [
-      {
-        "title": "🖼️ Conversione Immagini",
-        "description": "Ridimensiona, ritaglia, ruota e converti immagini con facilità. Formati supportati: JPEG, PNG e altri."
-      },
-      {
-        "title": "🎵 Trasformazione Audio",
-        "description": "Converti formati audio (MP3, WAV, AAC), regola il bitrate, taglia e unisci file audio con semplicità."
-      },
-      {
-        "title": "🎥 Metamorfosi Video",
-        "description": "Modifica, transcodifica, unisci clip o cambia formato per creare contenuti video straordinari per ogni piattaforma."
-      },
-      {
-        "title": "🚀 Illimitato e Gratuito",
-        "description": "Goditi conversioni illimitate senza costi nascosti o restrizioni, completamente gratis."
-      },
-      {
-        "title": "🌐 Accessibile Ovunque",
-        "description": "Converti facilmente dal tuo desktop, tablet o smartphone, ovunque tu sia."
-      },
-      {
-        "title": "🔒 Sicuro e Privato",
-        "description": "La tua privacy è importante. I file rimangono sicuri e riservati, sempre."
-      },
-      {
-        "title": "💡 Interfaccia Intuitiva",
-        "description": "Intuitiva per principianti, potente per esperti—non servono competenze tecniche."
-      },
-      {
-        "title": "📈 In Continua Evoluzione",
-        "description": "Aggiornamenti frequenti e nuove funzionalità per migliorare costantemente la tua esperienza multimediale."
-      },
-      {
-        "title": "🌟 Vantaggi AlwaysConvert",
-        "description": "Trasforma contenuti multimediali senza limiti. Potente, versatile e totalmente gratuito."
+    "title": "Chi Siamo: AlwaysConvert",
+    "subtitle": "Conversione File Semplice e Trasparente",
+    "mission": {
+      "title": "La Nostra Missione",
+      "description": "AlwaysConvert nasce dall'idea di rendere la conversione di file un processo semplice, veloce e accessibile a tutti. Il nostro obiettivo è abbattere le barriere tecniche che rendono complesso modificare formati di file."
+    },
+    "security": {
+      "title": "Sicurezza e Privacy al Primo Posto",
+      "files": {
+        "title": "Protezione dei Tuoi File",
+        "noSignup": {
+          "title": "Nessuna Registrazione Richiesta",
+          "desc": "Converti i tuoi file senza creare account"
+        },
+        "delete": {
+          "title": "Eliminazione Immediata",
+          "desc": "I file vengono automaticamente cancellati dopo la conversione"
+        },
+        "secure": {
+          "title": "Connessione Sicura",
+          "desc": "Utilizziamo protocolli di crittografia all'avanguardia"
+        }
       }
-    ]
+    },
+    "ads": {
+      "title": "Gestione Pubblicitaria Etica",
+      "description": "Utilizziamo Google AdSense per supportare il nostro servizio gratuito. Ecco cosa significa per te:",
+      "transparency": {
+        "title": "Trasparenza Pubblicitaria",
+        "safe": {
+          "title": "Annunci Non Invasivi",
+          "desc": "Posizionati con criterio, senza disturbare l'esperienza"
+        },
+        "relevant": {
+          "title": "Contenuti Pertinenti",
+          "desc": "Annunci correlati ai tuoi interessi"
+        },
+        "noTrack": {
+          "title": "Nessun Tracciamento Invasivo",
+          "desc": "Rispettiamo la tua privacy"
+        }
+      },
+      "howWorks": {
+        "title": "Come Funzionano gli Annunci",
+        "auto": "Gli annunci sono generati automaticamente da Google",
+        "spots": "Vengono visualizzati in spazi predefiniti del sito",
+        "clicks": "Ogni click supporta lo sviluppo di AlwaysConvert"
+      }
+    },
+    "transparency": {
+      "title": "Impegno per la Trasparenza",
+      "openSource": {
+        "title": "Open Source",
+        "desc": "Il nostro codice è pubblicamente disponibile"
+      },
+      "passion": {
+        "title": "Sviluppato con Passione",
+        "desc": "Da sviluppatori per gli utilizzatori"
+      },
+      "free": {
+        "title": "Gratuito per Sempre",
+        "desc": "Nessun costo nascosto"
+      }
+    },
+    "tech": {
+      "title": "Tecnologie Utilizzate",
+      "frontend": {
+        "title": "Frontend"
+      },
+      "conversion": {
+        "title": "Conversione File"
+      },
+      "hosting": {
+        "title": "Hosting"
+      },
+      "security": {
+        "title": "Sicurezza"
+      },
+      "hosting_desc": "Servizi cloud all'avanguardia",
+      "security_desc": "Protocolli di crittografia standard industriali"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "q1": {
+        "title": "I Miei File Sono Al Sicuro?",
+        "desc": "Assolutamente sì. Ogni file viene:",
+        "points": [
+          "Processato immediatamente",
+          "Cancellato dopo la conversione",
+          "Mai archiviato o condiviso"
+        ]
+      },
+      "q2": {
+        "title": "Posso Disabilitare gli Annunci?",
+        "desc": "Comprendiamo che gli annunci possono disturbare. Stiamo lavorando su:",
+        "points": [
+          "Opzione di supporto tramite donazioni",
+          "Versione \"ad-free\" per utenti più esigenti"
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contattaci",
+      "desc": "Hai domande? Suggerimenti? Siamo sempre aperti al dialogo.",
+      "github": "Contribuisci al progetto"
+    },
+    "cta": {
+      "title": "AlwaysConvert: Conversione File Semplice, Veloce, Sicura.",
+      "button": "Inizia a Convertire"
+    }
   },
-
   "privacyPolicy": {
     "effectiveDate": "Data di Efficacia: {date}",
     "intro": "AlwaysConvert si impegna a proteggere la tua privacy. Questa politica spiega chiaramente e trasparentemente le nostre pratiche di gestione dei dati.",
@@ -110,7 +182,6 @@
     ],
     "consent": "Utilizzando AlwaysConvert, acconsenti a questa Politica sulla Privacy. Interrompi l'uso del sito se non sei d'accordo con questi termini."
   },
-
   "dropzone": {
     "title": "Clicca o trascina qui i tuoi file",
     "titleHover": "Sì, proprio lì",
@@ -131,6 +202,10 @@
     "selectFormat": "Seleziona formato",
     "convertAll": "Converti tutto",
     "formatPlaceholder": "Formato"
+  },
+  "convert": {
+    "title": "Converti Immagini, Video e Audio",
+    "subtitle": "Trascina i tuoi file o clicca sulla box per iniziare",
+    "supportedFormats": "Formati supportati: JPG, PNG, GIF, WEBP, MP4, AVI, WEBM, MP3, WAV e altri."
   }
-
 }

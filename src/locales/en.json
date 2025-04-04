@@ -1,7 +1,35 @@
 {
   "home": {
     "title": "Free Unlimited File Converter",
-    "description": "Unleash your creativity with AlwaysConvert – the ultimate online tool for converting multimedia files freely and without limits. Transform images, audio, and videos with ease, without restrictions. Start converting now and elevate your content to a new level!"
+    "description": "Unleash your creativity with AlwaysConvert – the ultimate online tool for converting multimedia files freely and without limits. Transform images, audio, and videos with ease, without restrictions. Start converting now and elevate your content to a new level!",
+    "hero": {
+      "title1": "Convert Media Files",
+      "title2": "Securely",
+      "title3": "in Your Browser",
+      "subtitle": "Transform your images and videos to different formats easily. No uploads needed - all processing happens right in your browser.",
+      "cta": "Start Converting",
+      "learnMore": "Learn More"
+    },
+    "features": {
+      "title": "Why Choose Our Converter",
+      "security": {
+        "title": "100% Secure",
+        "desc": "All processing happens locally in your browser. Your files never leave your device."
+      },
+      "images": {
+        "title": "Image Formats",
+        "desc": "Convert between PNG, JPG, WebP, and GIF easily."
+      },
+      "videos": {
+        "title": "Video Formats",
+        "desc": "Convert videos to MP4, WebM, AVI and more."
+      }
+    },
+    "cta": {
+      "title": "Ready to Convert Your Files?",
+      "desc": "Try our free browser-based converter now. No sign-up required.",
+      "button": "Go to Converter"
+    }
   },
 
   "about": {
@@ -105,6 +133,11 @@
     "selectFormat": "Select format",
     "convertAll": "Convert All",
     "formatPlaceholder": "Format"
-  }
+  },
 
+  "convert": {
+    "title": "Convert Images, Videos and Audio",
+    "subtitle": "Drag and drop your files or click on the box to start",
+    "supportedFormats": "Supported formats: JPG, PNG, GIF, WEBP, MP4, AVI, WEBM, MP3, WAV and more."
+  }
 }

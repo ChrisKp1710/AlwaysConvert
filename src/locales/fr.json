@@ -1,7 +1,35 @@
 {
     "home": {
       "title": "Convertisseur de fichiers gratuit et illimité",
-      "description": "Libérez votre créativité avec AlwaysConvert – l'outil en ligne ultime pour convertir gratuitement et sans limites vos fichiers multimédias. Transformez images, audio et vidéos avec facilité, sans restrictions. Commencez à convertir maintenant et élevez vos contenus à un niveau supérieur !"
+      "description": "Libérez votre créativité avec AlwaysConvert – l'outil en ligne ultime pour convertir gratuitement et sans limites vos fichiers multimédias. Transformez images, audio et vidéos avec facilité, sans restrictions. Commencez à convertir maintenant et élevez vos contenus à un niveau supérieur !",
+      "hero": {
+        "title1": "Convertissez des Fichiers Multimédias",
+        "title2": "En Toute Sécurité",
+        "title3": "Dans Votre Navigateur",
+        "subtitle": "Transformez facilement vos images et vidéos en différents formats. Aucun téléchargement nécessaire - tout le traitement se fait directement dans votre navigateur.",
+        "cta": "Commencer la Conversion",
+        "learnMore": "En Savoir Plus"
+      },
+      "features": {
+        "title": "Pourquoi Choisir Notre Convertisseur",
+        "security": {
+          "title": "100% Sécurisé",
+          "desc": "Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil."
+        },
+        "images": {
+          "title": "Formats d'Image",
+          "desc": "Convertissez facilement entre PNG, JPG, WebP et GIF."
+        },
+        "videos": {
+          "title": "Formats Vidéo",
+          "desc": "Convertissez des vidéos en MP4, WebM, AVI et plus encore."
+        }
+      },
+      "cta": {
+        "title": "Prêt à Convertir Vos Fichiers ?",
+        "desc": "Essayez maintenant notre convertisseur gratuit basé sur navigateur. Aucune inscription requise.",
+        "button": "Aller au Convertisseur"
+      }
     },
 
     "about": {
@@ -90,6 +118,7 @@
       "titleHover": "Oui, juste là",
       "errorTitle": "Erreur lors du téléchargement de votre/vos fichier(s)",
       "errorDescription": "Fichiers autorisés : Audio, Vidéo et Images.",
+      "errorConverting": "Erreur lors de la conversion du fichier",
       "converting": "Conversion en cours",
       "done": "Terminé",
       "convertTo": "Convertir en",
@@ -104,6 +133,11 @@
       "selectFormat": "Sélectionner un format",
       "convertAll": "Tout convertir",
       "formatPlaceholder": "Format"
-    }
+    },
 
+    "convert": {
+      "title": "Convertir Images, Vidéos et Audio",
+      "subtitle": "Glissez-déposez vos fichiers ou cliquez sur la boîte pour commencer",
+      "supportedFormats": "Formats pris en charge : JPG, PNG, GIF, WEBP, MP4, AVI, WEBM, MP3, WAV et plus encore."
+    }
 }
