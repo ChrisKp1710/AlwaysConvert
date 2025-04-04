@@ -150,8 +150,10 @@ const Navbar: React.FC = () => {
                 {/* ⏰ Data e ora ben evidenti */}
                 <TimeNow />
 
-                {/* Cambio lingua */}
-                <LanguageSwitcher />
+                {/* Cambio lingua - CENTRATO */}
+                <div className="flex justify-center w-full">
+                    <LanguageSwitcher />
+                </div>
 
                 {/* 🌗 Tema toggle */}
                 <div className="flex justify-center">
